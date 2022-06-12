@@ -120,6 +120,8 @@ static const char *nitrogen[] = { "nitrogen", NULL };
 static const char *msger[] = { "Discord", NULL };
 
 static const char *browser[] = { "firefox", NULL };
+static const char *xvideos[] = { "firefox", "https://xvideos.com", NULL };
+static const char *sankaku[] = { "firefox", "https://chan.sankakucomplex.com/", NULL };
 
 
 /* Sound */
@@ -134,11 +136,12 @@ static const char *downmicb[] = { "amixer", "set", "-c", "2", "Capture", "6-", N
 
 static const char *upvol[] = { "amixer", "set", "-c", "2", "Master", "2+",  NULL };
 static const char *downvol[] = { "amixer", "set", "-c", "2", "Master", "2-", NULL };
-
+static const char *mutevol[] = { "amixer", "set", "-c", "2", "Master", "toggle", NULL };
 static const char *amixer[] = { "alacritty", "-e", "alsamixer", NULL };
 
 static const char *daw[] = { "bitwig-studio", NULL };
 static const char *daw2[] = { "renoise", NULL };
+
 
 /* Screen */
 
@@ -154,40 +157,42 @@ static Key keys[] = {
 	/* Utility */
 	
 	{ MODKEY,	XK_Escape,	spawn,  {.v = dmenucmd } },
-	{ MODKEY,       XK_q, 		spawn, 	{.v = termcmd } },
+	{ MODKEY,       XK_grave, 		spawn, 	{.v = termcmd } },
 	
 	{ MODKEY,	XK_F8,	spawn,	{.v = screenup } },	
 	{ MODKEY,	XK_F7,	spawn,	{.v = screendown } },
 	{ 0,	XF86XK_MonBrightnessUp, spawn,	{.v = screenup } },
 	{ 0,	XF86XK_MonBrightnessDown, spawn,	{.v = screendown } },
 
-	{ MODKEY,	XK_grave,   spawn,  {.v = rofi } },
-	{ MODKEY,		XK_s,	spawn,	{.v = scrot } },
-	{ MODKEY|ShiftMask,	XK_s,	spawn,	{.v = scrotf } },
+	{ MODKEY,	XK_q,	spawn,  {.v = rofi } },
+	{ 0,		XK_Print,	spawn,	{.v = scrot } },
+	{ ShiftMask,	XK_Print,	spawn,	{.v = scrotf } },
 	
 	{ MODKEY|ShiftMask,	XK_n,	spawn,	{.v = nitrogen } },
 	{ MODKEY,		XK_p,	spawn,	{.v = kpxc } },	
-	{ MODKEY,	XK_c,	spawn,	{.v = color } },
+	{ MODKEY,		XK_c,	spawn,	{.v = color } },
 
-	{ MODKEY,	XK_i,	spawn,	{.v = kbdup } },
-	{ MODKEY,	XK_u,	spawn,	{.v = kbddown } },
+	{ MODKEY,	XF86XK_KbdBrightnessUp,	spawn,	{.v = kbdup } },
+	{ MODKEY,	XF86XK_KbdBrightnessUp,	spawn,	{.v = kbddown } },
 	
+	{ MODKEY,	XK_x,	spawn,	{.v = xvideos } },
+	{ MODKEY|ShiftMask,	XK_x,	spawn,	{.v = sankaku } }, 
+
 	/* Volume/Sound-Related */
 	
-	{ MODKEY,	XK_F6,	spawn,	{.v = upmica } },
-	{ MODKEY,	XK_F5,	spawn,	{.v = downmica } },
-	{ MODKEY,	XK_F4,	spawn,	{.v = upmicb } },
-	{ MODKEY,	XK_F3,	spawn,	{.v = downmicb } },
 	{ MODKEY,   	XK_a, 	spawn,  {.v = mutemic } },
 
-	{ MODKEY,     	XK_F2,     spawn,       {.v = upvol } },
-   	{ MODKEY,      	XK_F1,     spawn,	{.v = downvol } },
-
 	{ 0,	XF86XK_AudioRaiseVolume,	spawn,	{.v = upvol } },
-	{ 0,	XF86XK_AudioLowerVolume,	spawn,	{.v = downvol} },	
+	{ 0,	XF86XK_AudioLowerVolume,	spawn,	{.v = downvol} },
+	{ 0,	XF86XK_AudioMute,		spawn,	{.v = mutevol } }, 
+	
 	{ MODKEY,	XF86XK_AudioRaiseVolume, spawn,	{.v = upmica } },
 	{ MODKEY,	XF86XK_AudioLowerVolume, spawn,	{.v = downmica } },
 
+	{ MODKEY|ShiftMask,	XF86XK_AudioRaiseVolume, spawn,	{.v = upmicb } },
+	{ MODKEY|ShiftMask,	XF86XK_AudioLowerVolume, spawn,	{.v = downmicb } },
+	
+	
 	{ MODKEY|ControlMask,	XK_s,	spawn,	{.v = amixer } },
 	
 	{ MODKEY|ShiftMask,	XK_m,	spawn,	{.v = m } },
@@ -195,13 +200,13 @@ static Key keys[] = {
 	{ MODKEY|ControlMask|ShiftMask,	XK_m,	spawn,	{.v = m3 } },
 	{ MODKEY|Mod1Mask,	XK_m,	spawn,	{.v = radio } },
 	
-	{ MODKEY|ShiftMask,	XK_b,	spawn,	{.v = daw } },
-	{ MODKEY|ShiftMask,	XK_r,	spawn,	{.v = daw2 } },
+	{ MODKEY,	XK_d,	spawn,	{.v = daw } },
+	{ MODKEY|Mod1Mask,	XK_d,	spawn,	{.v = daw2 } },
 	
 	/* General Applications */
 	
 	
-	{ MODKEY,		XK_d,	spawn,	{.v = msger } },
+	{ MODKEY,		XK_i,	spawn,	{.v = msger } },
 	{ MODKEY,		XK_w,	spawn,	{.v = browser } },
 	
 	{ MODKEY|ShiftMask,	XK_f,	spawn,	{.v = fm } },
@@ -334,4 +339,4 @@ static Signal signals[] = {
 	{ "setlayoutex",    setlayoutex },
 };
 
-/*Penis*/
+/*jacktop online*/
