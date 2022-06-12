@@ -12,18 +12,23 @@ static const char *fonts[]          = { "terminus:size=10" };
 static const char dmenufont[]       = "terminus:size=10";
 
 /*Background color*/
+
 static const char col_gray1[]       = "#000000";
 
 /*Inactive window border color*/
+
 static const char col_gray2[]       = "#000000";
 
 /*Font color*/
+
 static const char col_gray3[]       = "#ffffff";
 
 /*Current tag and current window font color*/
+
 static const char col_gray4[]       = "#ffffff";
 
 /*Top bar second color and active window border color*/
+
 static const char col_cyan[]        = "#224488";
 
 
@@ -87,7 +92,6 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 
 /* Utility */
 
-
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *rofi[] = { "rofi", "-show", "drun", NULL };
 static const char *scrot[] = { "scrot", "-s", NULL };
@@ -99,14 +103,17 @@ static const char *fm2[] = { "alacritty", "-e", "mc" };
 static const char *kpxc[] = { "keepassxc", NULL };
 static const char *color[] = { "org.kde.kcolorchooser", NULL };
 
+static const char *kbdup[] = { "asusctl", "-n", NULL };
+static const char *kbddown[] = { "asusctl", "-p", NULL };
+
 /* Applications */
 
-static const char *editor[] = { "alacritty", "-e", "vim", NULL };
-static const char *editor2[] =  { "emacs", NULL };
+static const char *e[] = { "alacritty", "-e", "vim", NULL };
+static const char *e2[] =  { "emacs", NULL };
 
-
-static const char *music[] = { "com.spotify.Client", NULL };
-static const char *music2[] = { "io.freetubeapp.FreeTube", NULL };
+static const char *m[] = { "com.spotify.Client", NULL };
+static const char *m2[] = { "io.freetubeapp.FreeTube", NULL };
+static const char *m3[] = { "alacritty", "-e", "cmus", NULL };
 
 static const char *radio[] = { "de.haeckerfelix.Shortwave", NULL };
 static const char *nitrogen[] = { "nitrogen", NULL };
@@ -130,8 +137,8 @@ static const char *downvol[] = { "amixer", "set", "-c", "2", "Master", "2-", NUL
 
 static const char *amixer[] = { "alacritty", "-e", "alsamixer", NULL };
 
-static const char *bitwig[] = { "bitwig-studio", NULL };
-static const char *renoise[] = { "renoise", NULL };
+static const char *daw[] = { "bitwig-studio", NULL };
+static const char *daw2[] = { "renoise", NULL };
 
 /* Screen */
 
@@ -139,20 +146,22 @@ static const char *screenup[] = { "light", "-A", "10", NULL };
 static const char *screendown[] = {"light", "-U", "10", NULL };
 
 /* Commands */
-
+#include <X11/XF86keysym.h>
 static Key keys[] = {
 
 	/* modifier                     key        function        argument */
 	
 	/* Utility */
 	
-	{ MODKEY,	XK_Escape,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,       XK_q, 	spawn,          {.v = termcmd } },
+	{ MODKEY,	XK_Escape,	spawn,  {.v = dmenucmd } },
+	{ MODKEY,       XK_q, 		spawn, 	{.v = termcmd } },
 	
 	{ MODKEY,	XK_F8,	spawn,	{.v = screenup } },	
 	{ MODKEY,	XK_F7,	spawn,	{.v = screendown } },
-	
-	{ MODKEY|ShiftMask,	XK_grave,   spawn,  {.v = rofi } },
+	{ 0,	XF86XK_MonBrightnessUp, spawn,	{.v = screenup } },
+	{ 0,	XF86XK_MonBrightnessDown, spawn,	{.v = screendown } },
+
+	{ MODKEY,	XK_grave,   spawn,  {.v = rofi } },
 	{ MODKEY,		XK_s,	spawn,	{.v = scrot } },
 	{ MODKEY|ShiftMask,	XK_s,	spawn,	{.v = scrotf } },
 	
@@ -160,6 +169,9 @@ static Key keys[] = {
 	{ MODKEY,		XK_p,	spawn,	{.v = kpxc } },	
 	{ MODKEY,	XK_c,	spawn,	{.v = color } },
 
+	{ MODKEY,	XK_i,	spawn,	{.v = kbdup } },
+	{ MODKEY,	XK_u,	spawn,	{.v = kbddown } },
+	
 	/* Volume/Sound-Related */
 	
 	{ MODKEY,	XK_F6,	spawn,	{.v = upmica } },
@@ -171,13 +183,20 @@ static Key keys[] = {
 	{ MODKEY,     	XK_F2,     spawn,       {.v = upvol } },
    	{ MODKEY,      	XK_F1,     spawn,	{.v = downvol } },
 
-	{ MODKEY|ControlMask,	XK_s,	spawn,	 {.v = amixer } },
+	{ 0,	XF86XK_AudioRaiseVolume,	spawn,	{.v = upvol } },
+	{ 0,	XF86XK_AudioLowerVolume,	spawn,	{.v = downvol} },	
+	{ MODKEY,	XF86XK_AudioRaiseVolume, spawn,	{.v = upmica } },
+	{ MODKEY,	XF86XK_AudioLowerVolume, spawn,	{.v = downmica } },
+
+	{ MODKEY|ControlMask,	XK_s,	spawn,	{.v = amixer } },
 	
-	{ MODKEY|ShiftMask,	XK_m,	spawn,	{.v = music } },
-	{ MODKEY|ControlMask,	XK_m,	spawn,	{.v = music2 } },
-	{ MODKEY|ControlMask|ShiftMask,	XK_m,	spawn,	{.v = radio } },	
-	{ MODKEY|ShiftMask,	XK_b,	spawn,	{.v = bitwig } },
-	{ MODKEY|ShiftMask,	XK_r,	spawn,	{.v = renoise } },
+	{ MODKEY|ShiftMask,	XK_m,	spawn,	{.v = m } },
+	{ MODKEY|ControlMask,	XK_m,	spawn,	{.v = m2 } },
+	{ MODKEY|ControlMask|ShiftMask,	XK_m,	spawn,	{.v = m3 } },
+	{ MODKEY|Mod1Mask,	XK_m,	spawn,	{.v = radio } },
+	
+	{ MODKEY|ShiftMask,	XK_b,	spawn,	{.v = daw } },
+	{ MODKEY|ShiftMask,	XK_r,	spawn,	{.v = daw2 } },
 	
 	/* General Applications */
 	
@@ -186,10 +205,10 @@ static Key keys[] = {
 	{ MODKEY,		XK_w,	spawn,	{.v = browser } },
 	
 	{ MODKEY|ShiftMask,	XK_f,	spawn,	{.v = fm } },
-	{ MODKEY|ControlMask, 	XK_f, 	spawn,    {.v = fm2 } },
+	{ MODKEY|ControlMask, 	XK_f, 	spawn,  {.v = fm2 } },
 	
-	{ MODKEY,	XK_e,	spawn,	{.v = editor } },	
-	{ MODKEY|ShiftMask, 	XK_e, 	spawn,    {.v = editor2 } },
+	{ MODKEY,	XK_e,	spawn,	{.v = e } },	
+	{ MODKEY|ShiftMask, 	XK_e, 	spawn,    {.v = e2 } },
 
 	/* Layouts, focus, etc. */
 	{ MODKEY,                      	XK_b,      togglebar,      {0} },
