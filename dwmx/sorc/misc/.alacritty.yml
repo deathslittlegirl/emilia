@@ -35,34 +35,30 @@ items:
         white: "#f7f7f7"
   - theme: 3024.dark
 colors:
-  # Default colors
+  name: Erebus
+  author: ""
   primary:
-    background: '#000000'
-    foreground: '#ffffff'
-
+    background: "#000000"
+    foreground: "#ffffff"
   cursor:
-    text: '#ffffff'
-    cursor: '#ffffff'
-
-  # Normal colors
+    text: "#000000"
+    cursor: "#ffffff"
   normal:
-    black: '#4e4e4e'
-    red: '#ff6c60'
-    green: '#a8ff60'
-    yellow: '#ffffb6'
-    blue: '#96cbfe'
-    magenta: '#ff73fd'
-    cyan: '#c6c5fe'
-    white: '#eeeeee'
-
-  # Bright colors
+    black: "#757575"
+    red: "#ff5f5f"
+    green: "#de8a36"
+    yellow: "#d78787"
+    blue: "#af5fd7"
+    magenta: "#ff87d7"
+    cyan: "#dea3e5"
+    white: "#b8b8b8"
   bright:
-    black: '#7c7c7c'
-    red: '#ffb6b0'
-    green: '#ceffab'
-    yellow: '#ffffcb'
-    blue: '#b5dcfe'
-    magenta: '#ff9cfe'
-    cyan: '#dfdffe'
-    white: '#ffffff'
-theme: IR-Black
+    black: "#b8b8b8"
+    red: "#d78787"
+    green: "#ff9f6f"
+    yellow: "#ff5f5f"
+    blue: "#dea3e5"
+    magenta: "#d7afaf"
+    cyan: "#af5fd7"
+    white: "#757575"
+theme: Erebus

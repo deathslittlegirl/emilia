@@ -29,7 +29,7 @@ static const char col_gray4[]       = "#ffffff";
 
 /*Top bar second color and active window border color*/
 
-static const char col_cyan[]        = "#224488";
+static const char col_cyan[]        = "#fd7490";
 
 
 static const char *colors[][3]      = {
@@ -104,6 +104,7 @@ static const char *fm2[] = { "alacritty", "-e", "mc" };
 static const char *kpxc[] = { "keepassxc", NULL };
 static const char *color[] = { "org.kde.kcolorchooser", NULL };
 static const char *emoji[] = { "gnome-characters", NULL };
+static const char *sysmon[] = { "alacritty", "-e", "htop", NULL };
 
 /* Applications */
 
@@ -123,13 +124,14 @@ static const char *b2[] = { "vimb", NULL };
 static const char *xvideos[] = { "firefox", "https://xvideos.com", NULL };
 static const char *sankaku[] = { "firefox", "https://chan.sankakucomplex.com/", NULL };
 
+static const char *github[] = { "io.github.shiftey.Desktop", NULL };
 
 /* Sound */
 
 static const char *mutemic[] = { "amixer", "set", "-c", "2", "Capture", "toggle" }; 
 
-static const char *upmica[] = { "amixer", "set", "-c", "2", "Capture", "3+", NULL };
-static const char *downmica[] = { "amixer", "set", "-c", "2", "Capture", "3-", NULL };
+static const char *upmica[] = { "amixer", "set", "-c", "2", "Capture", "2+", NULL };
+static const char *downmica[] = { "amixer", "set", "-c", "2", "Capture", "2-", NULL };
 
 static const char *upmicb[] = { "amixer", "set", "-c", "2", "Capture", "6+", NULL }; 
 static const char *downmicb[] = { "amixer", "set", "-c", "2", "Capture", "6-", NULL }; 
@@ -164,8 +166,9 @@ static Key keys[] = {
 	{ MODKEY,		XK_Escape,	spawn,  	{ .v = dmenucmd } },
 	{ MODKEY|ShiftMask,     XK_Return, 	spawn, 		{ .v = termcmd } },
 	
-	{ MODKEY,		XK_F8,		spawn,		{ .v = screenup } },	
-	{ MODKEY,		XK_F7,		spawn,		{ .v = screendown } },
+	{ MODKEY,		XK_F4,		spawn,		{ .v = screenup } },	
+	{ MODKEY,		XK_F3,		spawn,		{ .v = screendown } },
+	
 	{ 0,	XF86XK_MonBrightnessUp,		spawn,		{ .v = screenup } },
 	{ 0,	XF86XK_MonBrightnessDown, 	spawn,		{ .v = screendown } },
 
@@ -184,6 +187,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,	XK_x,		spawn,		{ .v = sankaku } }, 
 	
 	{ MODKEY|ControlMask,	XK_e,		spawn,		{ .v = emoji } },
+
+	{ MODKEY,		XK_F1,		spawn,		{ .v = sysmon } },
+	
 	/* Volume/Sound-Related */
 	
 	{ MODKEY,   		XK_a, 		spawn,  	{.v = mutemic } },
@@ -197,8 +203,7 @@ static Key keys[] = {
 
 	{ MODKEY|ShiftMask,	XF86XK_AudioRaiseVolume, spawn,	{ .v = upmicb } },
 	{ MODKEY|ShiftMask,	XF86XK_AudioLowerVolume, spawn,	{ .v = downmicb } },
-	
-	
+		
 	{ MODKEY|ControlMask,	XK_s,		spawn,		{ .v = amixer } },
 	{ MODKEY|ShiftMask,	XK_s,		spawn,		{ .v = pavu } },
 	{ MODKEY|ShiftMask,	XK_m,		spawn,		{ .v = m } },
@@ -210,40 +215,48 @@ static Key keys[] = {
 	{ MODKEY|Mod1Mask,	XK_d,		spawn,		{ .v = daw2 } },
 	
 	/* General Applications */
-	
-	
+		
 	{ MODKEY,		XK_i,		spawn,		{ .v = msger } },
 	{ MODKEY,		XK_w,		spawn,		{ .v = b } },
 	{ MODKEY|ShiftMask,	XK_w,		spawn,		{ .v = b2 } },
 	
-
 	{ MODKEY|ShiftMask,	XK_f,		spawn,		{ .v = fm } },
 	{ MODKEY|ControlMask, 	XK_f, 		spawn,  	{ .v = fm2 } },
 	
 	{ MODKEY,		XK_e,		spawn,		{ .v = e } },	
 	{ MODKEY|ShiftMask, 	XK_e, 		spawn,    	{ .v = e2 } },
 
+	{ MODKEY,		XK_g,		spawn,		{ .v = github } },
+
 	/* Layouts, focus, etc. */
 	{ MODKEY,               XK_b,      	togglebar,      { 0 } },
+	
 	{ MODKEY,               XK_j,      	focusstack,     { .i = +1 } },
 	{ MODKEY,               XK_k,      	focusstack,     { .i = -2 } },
+	
 	{ MODKEY,               XK_i,      	incnmaster,     { .i = +1 } },
 	{ MODKEY,               XK_d,      	incnmaster,     { .i = -1 } },
+	
 	{ MODKEY,               XK_h,      	setmfact,       { .f = -0.05} },
 	{ MODKEY,               XK_l,      	setmfact,       { .f = +0.05} },
+	
 	{ MODKEY,               XK_Return, 	zoom,           { 0 } },
 	{ MODKEY,               XK_Tab,    	view,           { 0 } },
 	{ MODKEY|ShiftMask,     XK_q,      	killclient,     { 0 } },
+	
 	{ MODKEY,               XK_t,      	setlayout,      { .v = &layouts[0]} },
 	{ MODKEY,               XK_f,      	setlayout,      { .v = &layouts[1]} },
 	{ MODKEY,               XK_m,      	setlayout,      { .v = &layouts[2]} },
 	{ MODKEY,               XK_y,      	setlayout,      { .v = &layouts[3]} },
 	{ MODKEY,               XK_space,  	setlayout,      { 0 } },
+	
 	{ MODKEY|ShiftMask,     XK_space,  	togglefloating, { 0 } },
 	{ MODKEY,               XK_0,      	view,           { .ui = ~0 } },
 	{ MODKEY|ShiftMask,     XK_0,      	tag,           	{ .ui = ~0 } },
+	
 	{ MODKEY,               XK_comma,  	focusmon,      	{ .i = -1 } },
 	{ MODKEY,               XK_period, 	focusmon,      	{ .i = +1 } },
+	
 	{ MODKEY|ShiftMask,     XK_comma,  	tagmon,        	{ .i = -1 } },
 	{ MODKEY|ShiftMask,     XK_period, 	tagmon,         { .i = +1 } },
 	 	
