@@ -1,4 +1,0 @@
-#!/bin/bash
-
-exec nitrogen --restore
-exec datetime.sh &
