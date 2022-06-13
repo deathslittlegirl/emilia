@@ -1,5 +1,5 @@
 # .bashrc
-
+neofetch
 PS1="[ \e[0;34m\w\e[0m ]\n:: "
 
 # Source global definitions
