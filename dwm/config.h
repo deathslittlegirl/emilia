@@ -211,7 +211,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask|ShiftMask,	XK_m,	spawn,		{ .v = m3 } },
 	{ MODKEY|Mod1Mask,	XK_m,		spawn,		{ .v = radio } },
 	
-	{ MODKEY,		XK_d,		spawn,		{ .v = daw } },
+	{ MODKEY|ShiftMask,		XK_d,		spawn,		{ .v = daw } },
 	{ MODKEY|Mod1Mask,	XK_d,		spawn,		{ .v = daw2 } },
 	
 	/* General Applications */
