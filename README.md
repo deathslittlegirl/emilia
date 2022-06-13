@@ -1,2 +1,2 @@
 # sheila
-my de-riced but highly functional configuration for dwm, pre-patched.
+sheila is an example configuration of dwm that i'm using to research various concepts in home computing. do wateva u want
