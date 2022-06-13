@@ -106,6 +106,8 @@ static const char *color[] = { "org.kde.kcolorchooser", NULL };
 static const char *emoji[] = { "gnome-characters", NULL };
 static const char *sysmon[] = { "alacritty", "-e", "htop", NULL };
 
+static const char *dwmcon[] = { "alacritty", "-e", "vim", "~/Downloads/sorc/dwm/config.h", NULL };
+
 /* Applications */
 
 static const char *e[] = { "alacritty", "-e", "vim", NULL };
@@ -211,7 +213,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask|ShiftMask,	XK_m,	spawn,		{ .v = m3 } },
 	{ MODKEY|Mod1Mask,	XK_m,		spawn,		{ .v = radio } },
 	
-	{ MODKEY|ShiftMask,		XK_d,		spawn,		{ .v = daw } },
+	{ MODKEY|ShiftMask,	XK_d,		spawn,		{ .v = daw } },
 	{ MODKEY|Mod1Mask,	XK_d,		spawn,		{ .v = daw2 } },
 	
 	/* General Applications */
@@ -227,8 +229,13 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask, 	XK_e, 		spawn,    	{ .v = e2 } },
 
 	{ MODKEY,		XK_g,		spawn,		{ .v = github } },
+	
+	/* DWM Configuration File */
+
+	{ MODKEY|ControlMask,	XK_comma,	spawn,		{ .v = dwmcon } },
 
 	/* Layouts, focus, etc. */
+
 	{ MODKEY,               XK_b,      	togglebar,      { 0 } },
 	
 	{ MODKEY,               XK_j,      	focusstack,     { .i = +1 } },
