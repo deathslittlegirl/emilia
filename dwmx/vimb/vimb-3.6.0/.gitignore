@@ -1,0 +1,6 @@
+*.[oad]
+*.lo
+*.so
+*.tar.gz
+sandbox
+version.h

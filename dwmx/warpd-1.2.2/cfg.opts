@@ -1,0 +1,76 @@
+hint_activation_key		string		"A-M-x"			"Activates hint mode."
+grid_activation_key		string		"A-M-g"			"Activates grid mode and allows for further manipulation of the pointer using the mapped keys."
+screen_activation_key		string		"A-M-s"			"Activate (s)creen selection mode."
+activation_key			string		"A-M-c"			"Activate normal movement mode (manual (c)ursor movement)."
+
+hint_oneshot_key		string		"A-M-l"			"Activate hint mode and exit upon selection."
+
+repeat_interval			int		20			"The number of milliseconds before repeating a movement event."
+
+speed				int		220			"Pointer speed in pixels/second."
+max_speed			int		1600			"The maximum pointer speed."
+acceleration			int		700			"Pointer acceleration in pixels/second^2."
+
+accelerator_acceleration	int		2900			"Pointer acceleration while the accelerator is depressed."
+accelerator			string		"a"			"Increase the speed of the pointer while held."
+
+buttons				list		"m , ." 		"A space separated list of mouse buttons (2 is middle click)."
+oneshot_buttons			list		"n - /"			"Oneshot mouse buttons (deactivate on click)."
+oneshot_timeout			int		300			"The length of time in milliseconds to wait for a second click after a oneshot key has been pressed."
+
+grid_exit			string		"c"			"Exit grid mode and return to normal mode."
+
+hint_exit			string		"esc"			"The exit key used for hint mode."
+
+exit				string		"esc"			"Exit the currently active warpd session."
+drag				string		"v"			"Toggle drag mode (mneominc (v)isual mode)."
+
+copy_and_exit			string		"c"			"Send the copy key and exit (useful in combination with v)."
+hint				string		"x"			"Activate hint mode while in normal mode (mnemonic: x marks the spot?)."
+grid				string		"g"			"Activate (g)rid mode while in normal mode."
+screen				string		"s"			"Activate (s)creen selection while in normal mode."
+
+left				string		"h"			"Move the cursor left in normal mode."
+down				string		"j"			"Move the cursor down in normal mode."
+up				string		"k"			"Move the cursor up in normal mode."
+right				string		"l"			"Move the cursor right in normal mode."
+cursor_color			string		"#FF4500"		"The color of the pointer in normal mode (rgba hex value)."
+cursor_size			int		7			"The height of the pointer in normal mode."
+
+top				string		"H"			"Moves the cursor to the top of the screen in normal mode."
+middle				string		"M"			"Moves the cursor to the middle of the screen in normal mode."
+bottom				string		"L"			"Moves the cursor to the bottom of the screen in normal mode."
+start				string		"0"			"Moves the cursor to the leftmost corner of the screen in normal mode."
+end				string		"$"			"Moves the cursor to the rightmost corner of the screen in normal mode."
+
+hist_back			string		"C-o"			"Move to the last position in the history stack."
+hist_forward			string		"C-i"			"Move to the next position in the history stack."
+
+grid_nr				int		2			"The number of rows in the grid."
+grid_nc				int		2			"The number of columns in the grid."
+
+grid_up				string		"w"			"Move the grid up."
+grid_left			string		"a"			"Move the grid left."
+grid_down			string		"s"			"Move the grid down."
+grid_right			string		"d"			"Move the grid right."
+
+grid_keys			list		"u i j k"		"A sequence of comma delimited keybindings which are ordered bookwise with respect to grid position."
+
+grid_color			string		"#1c1c1e"		"The color of the grid."
+grid_size			int		4			"The thickness of grid lines in pixels."
+grid_border_size		int		0			"The thickness of the grid border in pixels."
+grid_border_color		string		"#ffffff"		"The color of the grid border."
+
+hint_size			int		71			"An integer between 1 and 100 corresponding to the approximate percentage of screen width/height used by the widths/heights of all drawn hints in a row/column. The default value results in the drawn hints covering approximately 50% (the square of 71%) of total screen area."
+
+hint_bgcolor			string		"#1c1c1e"		"The background hint color."
+hint_fgcolor			string		"#a1aba7"		"The foreground hint color."
+hint_border_radius		int		3			"Border radius."
+
+scroll_down			string		"e"			"Scroll down key."
+scroll_up			string		"r"			"Scroll up key."
+
+screen_chars			string		"jkl;asdfg"	"The characters used for screen selection."
+hint_chars			string		"abcdefghijklmnopqrstuvwxyz"	"The character set from which hints are generated. The total number of hints is the square of the size of this string. It may be desirable to increase this for larger screens or trim it to increase gaps between hints."
+
+hint_font			string		"Arial"			"The font name used by hints. Note: This is platform specific, in X it corresponds to a valid xft font name, on macos it corresponds to a postscript name."

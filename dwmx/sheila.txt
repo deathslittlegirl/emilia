@@ -1,0 +1,27 @@
+Programs
+-----
+
+alacritty
+emacs
+spotify (flatpak)
+freeTube (flatpak) 
+shortwave (flatpak) 
+keepassxc
+nemo
+scrot
+rofi
+firefox
+renoise
+light
+warpd
+oneko
+discord
+kcolorchooser (flatpak)
+dunst
+dmenu
+
+shiela is the name for my example configuration of dwm, which for me personally was an experiment with turning a system into a tool beyond it just being pretty. the result is a default look for dwm, while underneath the hood is a modified control scheme tuned to the speed of my usage. as such, most keys to access crucial functions inside dwm are bound to keys accessible with the left hand alone. 
+
+programs that im frequently launching, like browsers, music players, editors, etc. have also been bound to keys in a very organized way. for editors, the E key and a combination of modkeys will launch different editors that one may use. the M key is for music players, and the W key is for browsers.
+
+im ranting a lot, but the point is that im experimenting with how computers should function for the home user and have posted my recent research here for you to examine. all of this for something entirely separate that im working on, so this repo will be ripe with weird shit from time to time. ill do my best to keep each commit functional, though.   

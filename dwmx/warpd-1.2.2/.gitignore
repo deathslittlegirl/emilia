@@ -1,0 +1,10 @@
+*swp
+*swn
+*swo
+tags
+*.out
+*gch
+NOTES
+lib/
+bin/
+*.o

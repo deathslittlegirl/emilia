@@ -1,0 +1,24 @@
+span[vimbhint^='label']{
+    background-color:#fff;
+    border:1px solid #444;
+    color:#000;
+    font:bold .8em monospace;
+    margin:0;
+    opacity:0.7;
+    padding:0px 1px;
+    position:fixed !important;
+    z-index:225000
+}
+*[vimbhint^='hint']{
+    background-color:#ff0 !important;
+    color:#000 !important;
+    transition-delay:all 0 !important;
+    transition:all 0 !important;
+    opacity:1 !important
+}
+*[vimbhint='hint focus']{
+    background-color:#8f0 !important
+}
+span[vimbhint='label focus']{
+    opacity:1;
+}
