@@ -179,11 +179,9 @@ static Key keys[] = {
 	/* modifier             key     	function     	argument */
 	
 	/* Utility */
-	
 	{ MODKEY,		XK_d,		spawn,  	{ .v = dmenucmd } },
+	{ MODKEY|ShiftMask,	XK_d,		spawn,  	{ .v = rofi } },
 	{ MODKEY|ShiftMask,   	XK_Return, 	spawn, 		{ .v = termcmd } },
-	{ MODKEY|ControlMask,	XK_Return,	spawn,  	{ .v = rofi } },
-
 	{ MODKEY,		XK_F4,		spawn,		{ .v = screenup } },	
 	{ MODKEY,		XK_F3,		spawn,		{ .v = screendown } },
 	
