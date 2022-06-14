@@ -1,23 +1,26 @@
 #!/bin/sh
-
 # Execute warpd for keyboard-based mouse control.
 exec warpd &
 # Execute nitrogen to restore the set wallpaper.
 exec nitrogen --restore &
-# Execute oneko for cute maid girl <33333 
-exec oneko -sakura &
+# Ghost girl?
+exec oneko -tomoyo &
 
 # Add clock to bar
 
-while true; do
 
-	xsetroot -name " $(date) " &
-	sleep 2
+
+while true; do
+	
+	memory=$(free -h | awk '(NR==2){ print $4 }')
+	volume=$(amixer get -c 2 Master | awk -F'[][]' 'END{ print $4 }')
+	micvolume=$(amixer get -c 2 Capture | awk -F'[][]' 'END{ print $4":"$6 }')	
+	temperature=$(sed 's/000$/°C/' /sys/class/thermal/thermal_zone0/temp)
+	battery=$(cat /sys/class/power_supply/BAT0/capacity)
+	clock=$(date +'%F %H:%M:%S.%N')
+
+	xsetroot -name " T: $temperature |  M: $micvolume | $clock | V: $volume | B: $battery% |" &
+	
 	wait
 
 done &
-
-# Set microphone to VOIP friendly levels. 
-
-exec amixer set -c 2 'Internal Mic Boost' 0 &
-exec amixer set -c 2 'Capture' 45 & 
