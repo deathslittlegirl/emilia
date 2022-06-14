@@ -1,2 +1,2 @@
 # sheila
-my de-riced but highly functional configuration for dwm, pre-patched.
+minimally riced example configuration of dwm.  
