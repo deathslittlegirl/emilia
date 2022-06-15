@@ -28,8 +28,8 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 
-static const char *fonts[]          = { "terminus:size=9" };
-static const char dmenufont[]       = "terminus:size=9";
+static const char *fonts[]          = { "terminus:size=10" };
+static const char dmenufont[]       = "terminus:size=10";
 
 /* background color */
 
@@ -45,11 +45,11 @@ static const char col_gray3[]       = "#ffffff";
 
 /* current tag and current window font color */
 
-static const char col_gray4[]       = "#ffffff";
+static const char col_gray4[]       = "#000000";
 
 /* top bar second color and active window border color */
 
-static const char col_cyan[]        = "#f22777";
+static const char col_cyan[]        = "#adffff";
 
 /* commit to velvet later */
 
