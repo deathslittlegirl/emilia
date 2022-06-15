@@ -1,5 +1,7 @@
 /* see LICENSE file for copyright and license details. */
 
+/* it compiles faster like this */
+
 #include "tatami.c"
 #include <X11/XF86keysym.h>
 
@@ -16,6 +18,8 @@
 
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
+/* it does not compile faster like that hahaha */
+
 /* appearance */
 
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -29,7 +33,7 @@ static const char dmenufont[]       = "terminus:size=9";
 
 /* background color */
 
-static const char col_gray1[]       = "#000000";
+static const char col_gray1[]       = "#1e1c1c";
 
 /* inactive window border color */
 
@@ -41,12 +45,13 @@ static const char col_gray3[]       = "#ffffff";
 
 /* current tag and current window font color */
 
-static const char col_gray4[]       = "#000000";
+static const char col_gray4[]       = "#ffffff";
 
 /* top bar second color and active window border color */
 
-static const char col_cyan[]        = "#fcff31";
+static const char col_cyan[]        = "#f22777";
 
+/* commit to velvet later */
 
 static const char *colors[][3]      = {
 
@@ -70,7 +75,7 @@ static const Rule rules[] = {
 	{ "Gimp",     NULL,       NULL,       0,            0,           -1 },
 	{ "Firefox",  NULL,       NULL,       0,       	    0,           -1 },
 	{ "Renoise",  NULL,	  NULL,	      0,	    0,		 -1 },
-	{ "broken",   NULL,	  NULL,		1 >> 8,		0,	1 }, 
+	{ "broken",   NULL,	  NULL,		1 >> 8,		0,	0 }, 
 };
 
 /* layout(s) */
@@ -137,12 +142,11 @@ static const char *sctrl2[] = { "pavucontrol", NULL };
 static const char *wp[] = { "nitrogen", NULL };
 
 static const char *ss[] = { "scrot", "-s", NULL };
-static const char *ssf[] = {"scrot", "-f", NULL };
-
+static const char *ssf[] = { "scrot", "-f", NULL };
 static const char *sr[] = { "simplescreenrecorder", NULL };
 
 static const char *fm1[] = { "nemo", NULL };
-static const char *fm2[] = { "alacritty", "-e", "mc", NULL };
+static const char *fm2[] = { "alacritty", "-e", "mc", "-b", NULL };
 
 static const char *pwmgr[] = { "keepassxc", NULL };
 
@@ -161,7 +165,7 @@ static const char *msg1[] = { "Discord", NULL };
 static const char *msg2[] = { "alacritty", "-e", "weechat", NULL };
 
 static const char *brw1[] = { "firefox", NULL };
-static const char *brw2[] = { "vimb", NULL }; 
+static const char *brw2[] = { "vivaldi", NULL }; 
 
 static const char *prn1[] = { "firefox", "https://xvideos.com", NULL };
 static const char *prn2[] = { "firefox", "https://chan.sankakucomplex.com/", NULL };
@@ -192,11 +196,23 @@ static const char *m3[] = { "alacritty", "-e", "cmus", NULL };
 static const char *radio1[] = { "goodvibes", NULL };
 static const char *radio2[] = { "de.haeckerfelix.Shortwave", NULL };
 
+/* gaming */
+
+static const char *steam[] = { "steam", NULL };
+/*static const char *lutris[] = { "lutris", NULL };*/
+static const char *game1[] = { "./home/neko/.steam/steam/steamapps/common/Terraria/Terraria", NULL };
+static const char *game2[] = { "./home/neko/.steam/steam/steamapps/common/tModLoader/tModLoader", NULL }; 
 /* commands */
 
 static Key keys[] = {
 
 	/* modifier             key     	function     	argument */
+
+	/* access configuration */
+
+	{ MODKEY|ShiftMask,	XK_bracketright,	spawn,	{ .v = dwmcon1 } },
+	{ MODKEY|ShiftMask,	XK_bracketleft,		spawn,	{ .v = dwmcon2 } },
+
 
 	/* utility */
 
@@ -204,10 +220,14 @@ static Key keys[] = {
 
 	{ MODKEY,		XK_F1,		spawn,  	{ .v = dmenucmd } },		
 	{ Mod1Mask,		XK_F1,		spawn,  	{ .v = dmenucmd } },		
-	
+	{ Mod1Mask,		XK_p,		spawn,		{ .v = dmenucmd } },
+
 	{ MODKEY|ShiftMask,	XK_Return, 	spawn, 		{ .v = termcmd } },
+	{ Mod1Mask|ShiftMask,	XK_Return, 	spawn, 		{ .v = termcmd } },
+		
+	{ Mod1Mask,		XK_Tab, 	spawn, 		{ .v = termcmd } },
 	
-	{ Mod1Mask,		XK_Tab,		spawn,  	{ .v = rofi } },
+	{ Mod1Mask|ShiftMask,	XK_Tab,		spawn,  	{ .v = rofi } },
 	
 	{ ShiftMask,		XK_Print,	spawn,		{ .v = ssf } },
 	{ 0,			XK_Print,	spawn,		{ .v = ss } },	
@@ -249,24 +269,20 @@ static Key keys[] = {
 
 	{ 0,	XF86XK_AudioMute,		spawn,		{ .v = mutevol } }, 
 	
-	/* access configuration */
-
-	{ MODKEY|ShiftMask,	XK_bracketright,	spawn,	{ .v = dwmcon1 } },
-	{ MODKEY|ShiftMask,	XK_bracketleft,		spawn,	{ .v = dwmcon2 } },
-
 	/* quit */
 
 	{ ControlMask|Mod1Mask,   XK_Delete,      quit,           {0} },
 	{ MODKEY,		  XK_Delete,	  quit,		  {0} },
+	{ ControlMask|MODKEY,	  XK_Delete,	  quit,		  {0} },
 	{ MODKEY,		  XK_End,	  quit,		  {0} },
-
+	
 	/* web */
 
 	{ MODKEY|ShiftMask,	XK_i,		spawn,		{ .v = msg1 } },
 	{ MODKEY|ControlMask,	XK_i,		spawn,		{ .v = msg2 } },
 
-	{ MODKEY|ShiftMask,	XK_w,		spawn,		{ .v = brw1 } },
-	{ MODKEY,		XK_w,		spawn,		{ .v = brw2 } },
+	{ MODKEY,		XK_w,		spawn,		{ .v = brw1 } },
+	{ MODKEY|ShiftMask,	XK_w,		spawn,		{ .v = brw2 } },
 
 	{ Mod1Mask,		XK_w,		spawn,		{ .v = prn1 } },
 	{ ShiftMask|Mod1Mask,	XK_w,		spawn,		{ .v = prn2 } }, 
@@ -303,6 +319,13 @@ static Key keys[] = {
 	{ MODKEY,		XK_v,		spawn,		{ .v = vv } },	
 	{ MODKEY|ShiftMask,	XK_v,		spawn,		{ .v = ve } },
 
+	/* gaming */
+	
+	{ MODKEY,		XK_g,		spawn,		{ .v = steam } },
+	{ MODKEY|ShiftMask,	XK_g,		spawn,		{ .v = game1 } },
+	{ MODKEY|ControlMask,	XK_g,		spawn,		{ .v = game2 } },	
+
+
 	/* layouts, focus, etc. */
 
 	{ MODKEY,               XK_b,      	togglebar,      { 0 } },
@@ -326,9 +349,10 @@ static Key keys[] = {
 	{ MODKEY,               XK_f,      	setlayout,      { .v = &layouts[1] } },
 	{ MODKEY,               XK_m,      	setlayout,      { .v = &layouts[2] } },
 	{ MODKEY,               XK_y,      	setlayout,      { .v = &layouts[3]} },
-	{ MODKEY,               XK_space,  	setlayout,      { 0 } },
 	
 	{ MODKEY|ShiftMask,     XK_space,  	togglefloating, { 0 } },
+	{ MODKEY,               XK_space,  	setlayout,      { 0 } },
+	
 	{ MODKEY,               XK_0,      	view,           { .ui = ~0 } },
 	{ MODKEY|ShiftMask,     XK_0,      	tag,           	{ .ui = ~0 } },
 	
