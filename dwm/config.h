@@ -98,8 +98,7 @@ static const Layout layouts[] = {
 	{ "><>",      	NULL },    /* no layout function means floating behavior */
 	{ "[M]",      	monocle },
 	{ "[]=",	tile },
-
-};
+	};
 
 /* dmenu */
 
@@ -169,6 +168,7 @@ static const char *brw2[] = { "vivaldi", NULL };
 
 static const char *prn1[] = { "firefox", "https://xvideos.com", NULL };
 static const char *prn2[] = { "firefox", "https://chan.sankakucomplex.com/", NULL };
+static const char *prn3[] = { "firefox", "https://spankbang.com", NULL };
 
 static const char *github[] = { "io.github.shiftey.Desktop", NULL };
 
@@ -200,8 +200,8 @@ static const char *radio2[] = { "de.haeckerfelix.Shortwave", NULL };
 
 static const char *steam[] = { "steam", NULL };
 /*static const char *lutris[] = { "lutris", NULL };*/
-static const char *game1[] = { "./home/neko/.steam/steam/steamapps/common/Terraria/Terraria", NULL };
-static const char *game2[] = { "./home/neko/.steam/steam/steamapps/common/tModLoader/tModLoader", NULL }; 
+
+
 /* commands */
 
 static Key keys[] = {
@@ -284,9 +284,10 @@ static Key keys[] = {
 	{ MODKEY,		XK_w,		spawn,		{ .v = brw1 } },
 	{ MODKEY|ShiftMask,	XK_w,		spawn,		{ .v = brw2 } },
 
-	{ Mod1Mask,		XK_w,		spawn,		{ .v = prn1 } },
-	{ ShiftMask|Mod1Mask,	XK_w,		spawn,		{ .v = prn2 } }, 
-	
+	{ MODKEY,		XK_x,		spawn,		{ .v = prn1 } },
+	{ MODKEY|ShiftMask,	XK_x,		spawn,		{ .v = prn2 } }, 
+	{ ControlMask|MODKEY,	XK_x, 		spawn,		{ .v = prn3 } },
+
 	{ MODKEY|ControlMask,	XK_w,		spawn,		{ .v = github } },
 	
 
@@ -322,9 +323,6 @@ static Key keys[] = {
 	/* gaming */
 	
 	{ MODKEY,		XK_g,		spawn,		{ .v = steam } },
-	{ MODKEY|ShiftMask,	XK_g,		spawn,		{ .v = game1 } },
-	{ MODKEY|ControlMask,	XK_g,		spawn,		{ .v = game2 } },	
-
 
 	/* layouts, focus, etc. */
 
