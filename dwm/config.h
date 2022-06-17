@@ -203,6 +203,10 @@ static const char *steam[] = { "steam", NULL };
 
 static const char *game1[] = { "cataclysm", NULL };
 
+/* cleaners */
+
+static const char *cleaner[] = { "bleachbit", NULL };
+
 /* commands */
 
 static Key keys[] = {
@@ -211,8 +215,8 @@ static Key keys[] = {
 
 	/* access configuration */
 
-	{ MODKEY|ShiftMask,	XK_bracketright,	spawn,	{ .v = dwmcon1 } },
-	{ MODKEY|ShiftMask,	XK_bracketleft,		spawn,	{ .v = dwmcon2 } },
+	{ MODKEY,		XK_slash,	spawn,	{ .v = dwmcon1 } },
+	{ MODKEY|ShiftMask,	XK_slash,	spawn,	{ .v = dwmcon2 } },
 
 	/* utility */
 
@@ -264,16 +268,18 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,	XF86XK_AudioLowerVolume, spawn,	{ .v = downmicb } },
 		
 	{ 0,	XF86XK_AudioRaiseVolume,	spawn,		{ .v = upvol } },
-	{ 0,	XF86XK_AudioLowerVolume,	spawn,		{ .v = downvol} },
+	{ 0,	XF86XK_AudioLowerVolume,	spawn,		{ .v = downvol } },
 
 	{ 0,	XF86XK_AudioMute,		spawn,		{ .v = mutevol } }, 
 	
 	/* quit */
 
-	{ ControlMask|Mod1Mask,   XK_Delete,      quit,           {0} },
-	{ MODKEY,		  XK_Delete,	  quit,		  {0} },
-	{ ControlMask|MODKEY,	  XK_Delete,	  quit,		  {0} },
 	{ MODKEY,		  XK_End,	  quit,		  {0} },
+	{ Mod1Mask,		  XK_Escape,      quit,	          {0} },
+
+	/* cleaners */	
+
+	{ MODKEY,		  XK_Delete,	spawn,		{ .v = cleaner } }, 
 	
 	/* web */
 
