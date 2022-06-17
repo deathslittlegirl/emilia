@@ -28,8 +28,8 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 
-static const char *fonts[]          = { "terminus:size=10" };
-static const char dmenufont[]       = "terminus:size=10";
+static const char *fonts[]          = { "terminus:size=9" };
+static const char dmenufont[]       = "terminus:size=9";
 
 /* background color */
 
@@ -45,11 +45,11 @@ static const char col_gray3[]       = "#ffffff";
 
 /* current tag and current window font color */
 
-static const char col_gray4[]       = "#000000";
+static const char col_gray4[]       = "#ffffff";
 
 /* top bar second color and active window border color */
 
-static const char col_cyan[]        = "#adffff";
+static const char col_cyan[]        = "#a393d8";
 
 /* commit to velvet later */
 
@@ -154,9 +154,9 @@ static const char *sysmon[] = { "alacritty", "-e", "htop", NULL };
 
 /* general applications */
 
-static const char *e1[] = { "alacritty", "-e", "vim", NULL };
+static const char *e1[] = { "gnome-text-editor", NULL };
 static const char *e2[] =  { "emacs", NULL };
-static const char *e3[] = { "gnome-text-editor", NULL };
+static const char *e3[] = { "alacritty", "-e", "vim", NULL };
 
 /* web */
 
@@ -201,6 +201,7 @@ static const char *radio2[] = { "de.haeckerfelix.Shortwave", NULL };
 static const char *steam[] = { "steam", NULL };
 /*static const char *lutris[] = { "lutris", NULL };*/
 
+static const char *game1[] = { "cataclysm", NULL };
 
 /* commands */
 
@@ -213,27 +214,25 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,	XK_bracketright,	spawn,	{ .v = dwmcon1 } },
 	{ MODKEY|ShiftMask,	XK_bracketleft,		spawn,	{ .v = dwmcon2 } },
 
-
 	/* utility */
-
-	{ MODKEY,		XK_F2,		spawn,		{ .v = sysmon } },
 
 	{ MODKEY,		XK_F1,		spawn,  	{ .v = dmenucmd } },		
 	{ Mod1Mask,		XK_F1,		spawn,  	{ .v = dmenucmd } },		
 	{ Mod1Mask,		XK_p,		spawn,		{ .v = dmenucmd } },
+	{ Mod1Mask,		XK_Tab, 	spawn, 		{ .v = dmenucmd } },
+		
+	{ MODKEY,		XK_F2,		spawn,  	{ .v = rofi } },
+	{ ShiftMask|Mod1Mask,	XK_p,		spawn,		{ .v = rofi } },
 
 	{ MODKEY|ShiftMask,	XK_Return, 	spawn, 		{ .v = termcmd } },
 	{ Mod1Mask|ShiftMask,	XK_Return, 	spawn, 		{ .v = termcmd } },
-		
-	{ Mod1Mask,		XK_Tab, 	spawn, 		{ .v = termcmd } },
-	
-	{ Mod1Mask|ShiftMask,	XK_Tab,		spawn,  	{ .v = rofi } },
-	
+	{ MODKEY,		XK_grave,	spawn,		{ .v = termcmd } }, 	
 	{ ShiftMask,		XK_Print,	spawn,		{ .v = ssf } },
 	{ 0,			XK_Print,	spawn,		{ .v = ss } },	
 	{ MODKEY,		XK_Print,	spawn,		{ .v = sr } },
 	
 	{ ControlMask,		XK_Escape,	spawn,		{ .v = pwmgr } },	
+	{ ShiftMask, 		XK_Escape,	spawn,		{ .v = sysmon } },
 
 	{ MODKEY|ShiftMask,	XK_f,		spawn,		{ .v = fm1 } },
 	{ MODKEY|ControlMask, 	XK_f, 		spawn,  	{ .v = fm2 } },
@@ -242,7 +241,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask, 	XK_e, 		spawn,    	{ .v = e2 } },
 	{ MODKEY|ControlMask,	XK_e,		spawn,		{ .v = e3 } },
 
-	{ MODKEY,		XK_grave,	spawn,		{ .v = emoji } },
+	{ Mod1Mask,		XK_grave,	spawn,		{ .v = emoji } },
 
 	/* system control */
 	
@@ -308,7 +307,6 @@ static Key keys[] = {
 	
 	/* photo */
 
-	
 	{ MODKEY,		XK_p,		spawn,		{ .v = pv } },
 	{ MODKEY,		XK_c,		spawn,		{ .v = c } },
 	{ MODKEY|ShiftMask,	XK_p,		spawn,		{ .v = pe } },
@@ -321,9 +319,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,	XK_v,		spawn,		{ .v = ve } },
 
 	/* gaming */
-	
-	{ MODKEY,		XK_g,		spawn,		{ .v = steam } },
 
+	{ MODKEY,		XK_g,		spawn,		{ .v = game1 } },	
+	{ ControlMask|MODKEY,	XK_g,		spawn,		{ .v = steam } },
+	
 	/* layouts, focus, etc. */
 
 	{ MODKEY,               XK_b,      	togglebar,      { 0 } },
