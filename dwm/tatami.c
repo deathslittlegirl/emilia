@@ -16,10 +16,11 @@ tatami(Monitor *m) {
 	
 	c = nexttiled(m->clients);
 	
-	if(n != 1)  nw = m->ww * m->mfact;
-				ny = m->wy;
+	if(n != 1)  
+		nw = m->ww * m->mfact;
+	ny = m->wy;
 				
-	resize(c, nx, ny, nw - 2 * c->bw, nh - 2 * c->bw, False);
+	resize(c, nx + m->gappx, ny + m->gappx, nw - (2 * c->bw) - 2 * m->gappx, nh - (2 * c->bw) - 2 * m->gappx, False);
 	
 	c = nexttiled(c->next);
 	
@@ -43,61 +44,114 @@ tatami(Monitor *m) {
 		switch(tc - (mats*5))
 				{
 					case 1://fill
+						
+						// Full Gaps
+						tny += m->gappx;
+						tnw -= m->gappx;
+						tnh -= 2*m->gappx;
+
 						break;
 					case 2://up and down
 						if((i % 5) == 0) //up
-						tnh/=2;
-						else if((i % 5) == 1) //down
 						{
 							tnh/=2;
+
+							// Full Gaps
+							tny += m->gappx;
+							tnw -= m->gappx;
+							tnh -= m->gappx;
+
+						}
+						else if((i % 5) == 1) //down
+						{
 							tny += nh/2;
+							tnh/=2;
+
+							// Full Gaps
+							tny += m->gappx;
+							tnw -= m->gappx;
+							tnh -= 2*m->gappx;
+
 						}
 						break;
 					case 3://bottom, up-left and up-right
 						if((i % 5) == 0) //up-left
 						{
-						tnw = nw/2;
-						tnh = (2*nh)/3;
+							tnw = nw/2;
+							tnh = (2*nh)/3;
+
+							// Full Gaps
+							tny += m->gappx;
+							tnw -= m->gappx;
+							tnh -= 2*m->gappx;
 						}
 						else if((i % 5) == 1)//up-right
 						{
 							tnx += nw/2;
 							tnw = nw/2;
-							tnh = (2*nh)/3;
+							tnh = (2*nh)/3; 
+
+							// Full Gaps
+							tny += m->gappx;
+							tnw -= m->gappx;
+							tnh -= 2*m->gappx;
 						}
 						else if((i % 5) == 2)//bottom
 						{
+							tny += (2*nh)/3;
 							tnh = nh/3;
-							tny += (2*nh)/3;	
+
+							// Full Gaps
+							tnw -= m->gappx;
+							tnh -= m->gappx;
 						}
 						break;
 					case 4://bottom, left, right and top
 						if((i % 5) == 0) //top
 						{
 							tnh = (nh)/4;
+							
+							// Full Gaps
+							tny += m->gappx;
+							tnw -= m->gappx;
+							tnh -= m->gappx;
 						}
 						else if((i % 5) == 1)//left
 						{
-							tnw = nw/2;
 							tny += nh/4;
+							tnw = nw/2;
 							tnh = (nh)/2;
+
+							// Full Gaps
+							tny += m->gappx;
+							tnw -= m->gappx;
+							tnh -= 2*m->gappx;
 						}
 						else if((i % 5) == 2)//right
 						{
 							tnx += nw/2;
-							tnw = nw/2;
 							tny += nh/4;
+							tnw = nw/2;
 							tnh = (nh)/2;
+							
+							// Full Gaps
+							tny += m->gappx;
+							tnw -= m->gappx;
+							tnh -= 2*m->gappx;
 						}
 						else if((i % 5) == 3)//bottom
 						{
-							tny += (3*nh)/4;
+							tny += (3*nh)/4 ;
 							tnh = (nh)/4;
+
+							// Full Gaps
+							tnh -= m->gappx;
+							tnw -= m->gappx;
 						}
 						break;
 				}
 		++i;
-		resize(c, tnx, tny, tnw - 2 * c->bw, tnh - 2 * c->bw, False);
+		resize(c, tnx, tny, tnw - (2 * c->bw), tnh - (2 * c->bw), False);
 	}
 	
 	++mats;
@@ -122,28 +176,50 @@ tatami(Monitor *m) {
 				case 0: //top-left-vert
 					tnw = (nw)/3;
 					tnh = (nh*2)/3;
+
+					// Full Gaps
+					tny += m->gappx;	
+					tnw -= m->gappx;
+					tnh -= 2*m->gappx;
 					break;
 				case 1: //top-right-hor
 					tnx += (nw)/3;
 					tnw = (nw*2)/3;
 					tnh = (nh)/3;
+
+					// Full Gaps
+					tny += m->gappx;	
+					tnw -= m->gappx;
+					tnh -= 2*m->gappx;
 					break;
 				case 2: //center
 					tnx += (nw)/3;
 					tnw = (nw)/3;
 					tny += (nh)/3;
 					tnh = (nh)/3;
+
+					// Full Gaps
+					tnw -= m->gappx;
+					tnh -= m->gappx;
 					break;
 				case 3: //bottom-right-vert
 					tnx += (nw*2)/3;
 					tnw = (nw)/3;
 					tny += (nh)/3;
 					tnh = (nh*2)/3;
+
+					// Full Gaps
+					tnw -= m->gappx;
+					tnh -= m->gappx;
 					break;
 				case 4: //(oldest) bottom-left-hor
 					tnw = (2*nw)/3;
 					tny += (2*nh)/3;
 					tnh = (nh)/3;
+
+					// Full Gaps
+					tnw -= m->gappx;
+					tnh -= m->gappx;
 					break;
 				default:
 					break;

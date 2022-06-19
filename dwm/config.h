@@ -23,7 +23,12 @@
 /* appearance */
 
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const int startwithgaps = 1;
+static const unsigned int gappx = 20;
 static const unsigned int snap      = 32;       /* snap pixel */
+
+/* ok so like its just aesthetic sure but */
+
 
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
@@ -223,7 +228,7 @@ static Key keys[] = {
 	/* utility */
 
 			
-	{ Mod1Mask,		XK_F2,		spawn,  	{ .v = dmenucmd } },		
+	{ MODKEY,		XK_F2,		spawn,  	{ .v = dmenucmd } },		
 	{ Mod1Mask,		XK_p,		spawn,		{ .v = dmenucmd } },
 	{ Mod1Mask,		XK_Tab, 	spawn, 		{ .v = dmenucmd } },
 	{ MODKEY,		XK_grave,	spawn,		{ .v = dmenucmd } }, 	
@@ -378,7 +383,11 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,     XK_Left,  	tagmon,        	{ .i = -1 } },
 	{ MODKEY|ShiftMask,     XK_Right, 	tagmon,         { .i = +1 } },
 	
-
+	{ MODKEY,               XK_bracketleft,  setgaps,       {.i = -5 } },
+	{ MODKEY,               XK_bracketright, setgaps,       {.i = +5 } },
+	{ MODKEY|ShiftMask,   	XK_bracketleft,	 setgaps,       {.i = GAP_RESET } },
+	{ MODKEY|ShiftMask,   XK_bracketright, setgaps,       {.i = GAP_TOGGLE} },
+	
 	/* workspaces */
 	
 	TAGKEYS(                XK_1,                      	0)
