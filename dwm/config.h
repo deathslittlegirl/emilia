@@ -386,7 +386,7 @@ static Key keys[] = {
 	{ MODKEY,               XK_bracketleft,  setgaps,       {.i = -5 } },
 	{ MODKEY,               XK_bracketright, setgaps,       {.i = +5 } },
 	{ MODKEY|ShiftMask,   	XK_bracketleft,	 setgaps,       {.i = GAP_RESET } },
-	{ MODKEY|ShiftMask,   XK_bracketright, setgaps,       {.i = GAP_TOGGLE} },
+	{ MODKEY|ShiftMask,     XK_bracketright, setgaps,       {.i = GAP_TOGGLE} },
 	
 	/* workspaces */
 	
