@@ -26,7 +26,7 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
+static const int topbar             = 0;        /* 0 means bottom bar */
 
 static const char *fonts[]          = { "terminus:size=9" };
 static const char dmenufont[]       = "terminus:size=9";
@@ -80,7 +80,7 @@ static const Rule rules[] = {
 
 /* layout(s) */
 
-static const float mfact     = 0.66; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.77; /* factor of master area size [0.05..0.95] */
 
 static const int nmaster     = 1;    /* number of clients in master area */
 
@@ -133,8 +133,9 @@ static const char *kbddown[] = { "light", "-s", "sysfs/leds/asus::kbd_backlight"
 static const char *dwmcon1[] = { "alacritty", "-e", "vim", "/home/neko/Downloads/sorc/dwm/config.h", NULL };
 static const char *dwmcon2[] = { "alacritty", "-e", "vim", "/home/neko/.dwm/autostart.sh", NULL };
 
-static const char *sctrl1[] = { "alacritty", "-e", "alsamixer", NULL };
-static const char *sctrl2[] = { "pavucontrol", NULL };
+static const char *sctrl1[] = { "pavucontrol", NULL };
+static const char *sctrl2[] = { "alacritty", "-e", "alsamixer", NULL };
+static const char *sctrl3[] = { "org.rncbc.qpwgraph", NULL };
 
 /* utility */
 
@@ -201,7 +202,8 @@ static const char *radio2[] = { "de.haeckerfelix.Shortwave", NULL };
 static const char *steam[] = { "steam", NULL };
 /*static const char *lutris[] = { "lutris", NULL };*/
 
-static const char *game1[] = { "cataclysm", NULL };
+static const char *game1[] = { "alacritty", "-e", "cataclysm", NULL };
+static const char *game2[] = { "supertuxkart", NULL };
 
 /* cleaners */
 
@@ -215,22 +217,24 @@ static Key keys[] = {
 
 	/* access configuration */
 
-	{ MODKEY,		XK_slash,	spawn,	{ .v = dwmcon1 } },
-	{ MODKEY|ShiftMask,	XK_slash,	spawn,	{ .v = dwmcon2 } },
+	{ MODKEY,		XK_slash,	spawn,		{ .v = dwmcon1 } },
+	{ MODKEY|ShiftMask,	XK_slash,	spawn,		{ .v = dwmcon2 } },
 
 	/* utility */
 
-	{ MODKEY,		XK_F1,		spawn,  	{ .v = dmenucmd } },		
-	{ Mod1Mask,		XK_F1,		spawn,  	{ .v = dmenucmd } },		
+			
+	{ Mod1Mask,		XK_F2,		spawn,  	{ .v = dmenucmd } },		
 	{ Mod1Mask,		XK_p,		spawn,		{ .v = dmenucmd } },
 	{ Mod1Mask,		XK_Tab, 	spawn, 		{ .v = dmenucmd } },
+	{ MODKEY,		XK_grave,	spawn,		{ .v = dmenucmd } }, 	
 		
-	{ MODKEY,		XK_F2,		spawn,  	{ .v = rofi } },
+	{ MODKEY,		XK_F1,		spawn,  	{ .v = rofi } },
 	{ ShiftMask|Mod1Mask,	XK_p,		spawn,		{ .v = rofi } },
+	{ Mod1Mask,		XK_grave,	spawn,  	{ .v = rofi } },
 
 	{ MODKEY|ShiftMask,	XK_Return, 	spawn, 		{ .v = termcmd } },
 	{ Mod1Mask|ShiftMask,	XK_Return, 	spawn, 		{ .v = termcmd } },
-	{ MODKEY,		XK_grave,	spawn,		{ .v = termcmd } }, 	
+
 	{ ShiftMask,		XK_Print,	spawn,		{ .v = ssf } },
 	{ 0,			XK_Print,	spawn,		{ .v = ss } },	
 	{ MODKEY,		XK_Print,	spawn,		{ .v = sr } },
@@ -245,7 +249,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask, 	XK_e, 		spawn,    	{ .v = e2 } },
 	{ MODKEY|ControlMask,	XK_e,		spawn,		{ .v = e3 } },
 
-	{ Mod1Mask,		XK_grave,	spawn,		{ .v = emoji } },
+	{ Mod1Mask,		XK_period,	spawn,		{ .v = emoji } },
 
 	/* system control */
 	
@@ -308,8 +312,9 @@ static Key keys[] = {
 	{ Mod1Mask,		XK_d,		spawn,		{ .v = daw1 } },
 	{ ControlMask|Mod1Mask,	XK_d,		spawn,		{ .v = daw2 } },
 
-	{ MODKEY|ControlMask,	XK_s,		spawn,		{ .v = sctrl1 } },
+	{ MODKEY,		XK_s,		spawn,		{ .v = sctrl1 } },
 	{ MODKEY|ShiftMask,	XK_s,		spawn,		{ .v = sctrl2 } },
+	{ MODKEY|ControlMask,	XK_s,		spawn,		{ .v = sctrl3 } },	
 	
 	/* photo */
 
@@ -327,9 +332,13 @@ static Key keys[] = {
 	/* gaming */
 
 	{ MODKEY,		XK_g,		spawn,		{ .v = game1 } },	
+	{ MODKEY|ShiftMask,	XK_g, 		spawn,		{ .v = game2 } },
 	{ ControlMask|MODKEY,	XK_g,		spawn,		{ .v = steam } },
 	
 	/* layouts, focus, etc. */
+
+	
+	{ Mod1Mask,		XK_f,		togglecanfocusfloating,		{0} },
 
 	{ MODKEY,               XK_b,      	togglebar,      { 0 } },
 	
