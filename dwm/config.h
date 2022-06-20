@@ -31,14 +31,14 @@ static const unsigned int snap      = 32;       /* snap pixel */
 
 
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 0;        /* 0 means bottom bar */
+static const int topbar             = 1;        /* 0 means bottom bar */
 
 static const char *fonts[]          = { "terminus:size=9" };
 static const char dmenufont[]       = "terminus:size=9";
 
 /* background color */
 
-static const char col_gray1[]       = "#1e1c1c";
+static const char col_gray1[]       = "#000000";
 
 /* inactive window border color */
 
@@ -54,9 +54,7 @@ static const char col_gray4[]       = "#ffffff";
 
 /* top bar second color and active window border color */
 
-static const char col_cyan[]        = "#a393d8";
-
-/* commit to velvet later */
+static const char col_cyan[]        = "#2e4db8";
 
 static const char *colors[][3]      = {
 
@@ -85,7 +83,7 @@ static const Rule rules[] = {
 
 /* layout(s) */
 
-static const float mfact     = 0.77; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.62; /* factor of master area size [0.05..0.95] */
 
 static const int nmaster     = 1;    /* number of clients in master area */
 
@@ -355,8 +353,8 @@ static Key keys[] = {
 	{ MODKEY,               XK_i,      	incnmaster,     { .i = +1 } },
 	{ MODKEY,               XK_d,      	incnmaster,     { .i = -1 } },
 	
-	{ MODKEY,               XK_h,      	setmfact,       { .f = -0.03 } },
-	{ MODKEY,               XK_l,      	setmfact,       { .f = +0.03 } },
+	{ MODKEY,               XK_h,      	setmfact,       { .f = -0.02 } },
+	{ MODKEY,               XK_l,      	setmfact,       { .f = +0.02 } },
 	
 	{ MODKEY,               XK_Return, 	zoom,           { 0 } },
 	{ MODKEY,               XK_Tab,    	view,           { 0 } },
@@ -383,8 +381,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,     XK_Left,  	tagmon,        	{ .i = -1 } },
 	{ MODKEY|ShiftMask,     XK_Right, 	tagmon,         { .i = +1 } },
 	
-	{ MODKEY,               XK_bracketleft,  setgaps,       {.i = -5 } },
-	{ MODKEY,               XK_bracketright, setgaps,       {.i = +5 } },
+	{ MODKEY,               XK_bracketleft,  setgaps,       {.i = -2 } },
+	{ MODKEY,               XK_bracketright, setgaps,       {.i = +2 } },
 	{ MODKEY|ShiftMask,   	XK_bracketleft,	 setgaps,       {.i = GAP_RESET } },
 	{ MODKEY|ShiftMask,     XK_bracketright, setgaps,       {.i = GAP_TOGGLE} },
 	
