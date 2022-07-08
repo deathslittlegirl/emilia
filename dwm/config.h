@@ -54,7 +54,7 @@ static const char col_gray4[]       = "#ffffff";
 
 /* top bar second color and active window border color */
 
-static const char col_cyan[]        = "#2e4db8";
+static const char col_cyan[]        = "#a393d8";
 
 static const char *colors[][3]      = {
 
@@ -230,14 +230,16 @@ static Key keys[] = {
 	{ Mod1Mask,		XK_p,		spawn,		{ .v = dmenucmd } },
 	{ Mod1Mask,		XK_Tab, 	spawn, 		{ .v = dmenucmd } },
 	{ MODKEY,		XK_grave,	spawn,		{ .v = dmenucmd } }, 	
-		
+	{ MODKEY|ShiftMask,	XK_semicolon,	spawn,		{ .v = dmenucmd } },
+
 	{ MODKEY,		XK_F1,		spawn,  	{ .v = rofi } },
 	{ ShiftMask|Mod1Mask,	XK_p,		spawn,		{ .v = rofi } },
 	{ Mod1Mask,		XK_grave,	spawn,  	{ .v = rofi } },
 
 	{ MODKEY|ShiftMask,	XK_Return, 	spawn, 		{ .v = termcmd } },
 	{ Mod1Mask|ShiftMask,	XK_Return, 	spawn, 		{ .v = termcmd } },
-
+	{ ControlMask|Mod1Mask, XK_t,		spawn,		{ .v = termcmd } },
+	
 	{ ShiftMask,		XK_Print,	spawn,		{ .v = ssf } },
 	{ 0,			XK_Print,	spawn,		{ .v = ss } },	
 	{ MODKEY,		XK_Print,	spawn,		{ .v = sr } },
@@ -282,8 +284,9 @@ static Key keys[] = {
 	/* quit */
 
 	{ MODKEY,		  XK_End,	  quit,		  {0} },
-	{ Mod1Mask,		  XK_Escape,      quit,	          {0} },
-
+	{ Mod1Mask|ShiftMask,	  XK_Escape,      quit,	          {0} },
+	{ ControlMask|Mod1Mask,	  XK_Delete,      quit,	          {0} },
+	
 	/* cleaners */	
 
 	{ MODKEY,		  XK_Delete,	spawn,		{ .v = cleaner } }, 
@@ -307,7 +310,7 @@ static Key keys[] = {
 
 	{ MODKEY|ShiftMask,	XK_m,		spawn,		{ .v = m1 } },
 	{ MODKEY|ControlMask,	XK_m,		spawn,		{ .v = m2 } },
-	{ Mod1Mask,		XK_m,		spawn,		{ .v = m3 } },
+	{ MODKEY|Mod1Mask,		XK_m,		spawn,		{ .v = m3 } },
 	
 	{ MODKEY,		XK_r,		spawn,		{ .v = radio1 } },
 	{ MODKEY|ShiftMask,	XK_r,		spawn,		{ .v = radio2 } },
