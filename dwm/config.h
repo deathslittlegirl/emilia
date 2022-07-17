@@ -54,7 +54,7 @@ static const char col_gray4[]       = "#ffffff";
 
 /* top bar second color and active window border color */
 
-static const char col_cyan[]        = "#a393d8";
+static const char col_cyan[]        = "#9a2b49";
 
 static const char *colors[][3]      = {
 
@@ -114,16 +114,29 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *rofi[] = { "rofi", "-show", "drun", NULL };
 
-static const char *upmica[] = { "amixer", "set", "-c", "2", "Capture", "2+", NULL };
-static const char *downmica[] = { "amixer", "set", "-c", "2", "Capture", "2-", NULL };
+static const char *upmica[] = { "amixer", "set", "-c", "2", "Capture", "1+", NULL };
+static const char *downmica[] = { "amixer", "set", "-c", "2", "Capture", "1-", NULL };
 
-static const char *upmicb[] = { "amixer", "set", "-c", "2", "Capture", "6+", NULL }; 
-static const char *downmicb[] = { "amixer", "set", "-c", "2", "Capture", "6-", NULL }; 
+static const char *upmicb[] = { "amixer", "set", "-c", "2", "Capture", "1+", NULL }; 
+static const char *downmicb[] = { "amixer", "set", "-c", "2", "Capture", "1-", NULL }; 
 
 static const char *mutemic[] = { "amixer", "set", "-c", "2", "Capture", "toggle", NULL }; 
 
-static const char *upvol[] = { "amixer", "set", "-c", "2", "Master", "2+",  NULL };
-static const char *downvol[] = { "amixer", "set", "-c", "2", "Master", "2-", NULL };
+static const char *emiup[] = { "amixer", "set", "Master", "1%+", NULL }; 
+static const char *emidown[] = { "amixer", "set", "Master", "1%-", NULL }; 
+
+static const char *plystop[] = { "playerctl", "--all-players", "stop", NULL }; 
+static const char *plypaus[] = { "playerctl", "--all-players", "pause", NULL }; 
+static const char *plyplay[] = { "playerctl", "--all-players", "play", NULL }; 
+static const char *plyback[] = { "playerctl", "position", "3-", NULL };
+static const char *plyfore[] = { "playerctl", "position", "3+", NULL };
+static const char *plyprev[] = { "playerctl", "previous", NULL};
+static const char *plynext[] = { "playerctl", "next", NULL};
+static const char *plyback2[] = { "playerctl", "position", "10-", NULL };
+static const char *plyfore2[] = { "playerctl", "position", "10+", NULL };
+
+static const char *upvol[] = { "amixer", "set", "-c", "2", "Master", "1+",  NULL };
+static const char *downvol[] = { "amixer", "set", "-c", "2", "Master", "1-", NULL };
 
 static const char *mutevol[] = { "amixer", "set", "-c", "2", "Master", "toggle", NULL };
 
@@ -241,7 +254,9 @@ static Key keys[] = {
 	{ ControlMask|Mod1Mask, XK_t,		spawn,		{ .v = termcmd } },
 	
 	{ ShiftMask,		XK_Print,	spawn,		{ .v = ssf } },
+	
 	{ 0,			XK_Print,	spawn,		{ .v = ss } },	
+
 	{ MODKEY,		XK_Print,	spawn,		{ .v = sr } },
 	
 	{ ControlMask,		XK_Escape,	spawn,		{ .v = pwmgr } },	
@@ -276,11 +291,31 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,	XF86XK_AudioRaiseVolume, spawn,	{ .v = upmicb } },
 	{ MODKEY|ShiftMask,	XF86XK_AudioLowerVolume, spawn,	{ .v = downmicb } },
 		
-	{ 0,	XF86XK_AudioRaiseVolume,	spawn,		{ .v = upvol } },
-	{ 0,	XF86XK_AudioLowerVolume,	spawn,		{ .v = downvol } },
+	{ 0,	XF86XK_AudioRaiseVolume,	spawn,		{ .v = emiup } },
+
+	{ 0,	XF86XK_AudioLowerVolume,	spawn,		{ .v = emidown } },
 
 	{ 0,	XF86XK_AudioMute,		spawn,		{ .v = mutevol } }, 
 	
+	{ 0,	XF86XK_AudioStop,		spawn,		{ .v = plystop } },
+
+	{ 0,	XF86XK_AudioPlay,		spawn,		{ .v = plypaus } },
+
+	{ MODKEY,	XF86XK_AudioPlay,		spawn,		{ .v = plyplay } },
+
+	{ 0,	XF86XK_AudioNext,		spawn,		{ .v = plynext } },
+
+	{ 0, 	XF86XK_AudioPrev,		spawn,		{ .v = plyprev } },
+
+	{ MODKEY,	XF86XK_AudioNext,		spawn,		{ .v = plyfore } },
+
+	{ MODKEY,	XF86XK_AudioPrev,		spawn,		{ .v = plyback } },
+
+	{ ControlMask,	XF86XK_AudioNext,		spawn,		{ .v = plyfore2 } },
+
+	{ ControlMask,	XF86XK_AudioPrev,		spawn,		{ .v = plyback2 } },
+
+
 	/* quit */
 
 	{ MODKEY,		  XK_End,	  quit,		  {0} },
