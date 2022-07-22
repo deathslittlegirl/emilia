@@ -54,7 +54,7 @@ static const char col_gray4[]       = "#ffffff";
 
 /* top bar second color and active window border color */
 
-static const char col_cyan[]        = "#9a2b49";
+static const char col_cyan[]        = "#7d7dba";
 
 static const char *colors[][3]      = {
 
@@ -78,7 +78,7 @@ static const Rule rules[] = {
 	{ "Gimp",     NULL,       NULL,       0,            0,           -1 },
 	{ "Firefox",  NULL,       NULL,       0,       	    0,           -1 },
 	{ "Renoise",  NULL,	  NULL,	      0,	    0,		 -1 },
-	{ "broken",   NULL,	  NULL,		1 >> 8,		0,	0 }, 
+	{ "broken",   NULL,	  NULL,		1 >> 8,		0,	-1 }, 
 };
 
 /* layout(s) */
@@ -117,10 +117,13 @@ static const char *rofi[] = { "rofi", "-show", "drun", NULL };
 static const char *upmica[] = { "amixer", "set", "-c", "2", "Capture", "1+", NULL };
 static const char *downmica[] = { "amixer", "set", "-c", "2", "Capture", "1-", NULL };
 
-static const char *upmicb[] = { "amixer", "set", "-c", "2", "Capture", "1+", NULL }; 
-static const char *downmicb[] = { "amixer", "set", "-c", "2", "Capture", "1-", NULL }; 
+static const char *upmicb[] = { "amixer", "set", "-c", "3", "Mic", "1+", NULL }; 
+static const char *downmicb[] = { "amixer", "set", "-c", "3", "Mic", "1-", NULL }; 
 
 static const char *mutemic[] = { "amixer", "set", "-c", "2", "Capture", "toggle", NULL }; 
+
+static const char *mutemicb[] = { "amixer", "set", "-c", "3", "Mic", "toggle", NULL }; 
+
 
 static const char *emiup[] = { "amixer", "set", "Master", "1%+", NULL }; 
 static const char *emidown[] = { "amixer", "set", "Master", "1%-", NULL }; 
@@ -134,10 +137,6 @@ static const char *plyprev[] = { "playerctl", "previous", NULL};
 static const char *plynext[] = { "playerctl", "next", NULL};
 static const char *plyback2[] = { "playerctl", "position", "10-", NULL };
 static const char *plyfore2[] = { "playerctl", "position", "10+", NULL };
-
-static const char *upvol[] = { "amixer", "set", "-c", "2", "Master", "1+",  NULL };
-static const char *downvol[] = { "amixer", "set", "-c", "2", "Master", "1-", NULL };
-
 static const char *mutevol[] = { "amixer", "set", "-c", "2", "Master", "toggle", NULL };
 
 static const char *screenup[] = { "light", "-A", "10", NULL };
@@ -283,13 +282,17 @@ static Key keys[] = {
 	{ 0,	XF86XK_KbdBrightnessDown,	spawn,		{ .v = kbddown } },
 	
 	{ MODKEY,	XF86XK_AudioMute,	spawn,		{ .v = mutemic } },
+	{ MODKEY|ShiftMask,	XF86XK_AudioMute,	spawn,		{ .v = mutemicb } },
+	
 	{ MODKEY,	XK_Escape,		spawn,		{ .v = mutemic } },
+	{ MODKEY|ShiftMask,	XK_Escape,		spawn,		{ .v = mutemicb } },
+
 
 	{ MODKEY,	XF86XK_AudioRaiseVolume, spawn,		{ .v = upmica } },
 	{ MODKEY,	XF86XK_AudioLowerVolume, spawn,		{ .v = downmica } },
 
-	{ MODKEY|ShiftMask,	XF86XK_AudioRaiseVolume, spawn,	{ .v = upmicb } },
-	{ MODKEY|ShiftMask,	XF86XK_AudioLowerVolume, spawn,	{ .v = downmicb } },
+	{ ControlMask,	XF86XK_AudioRaiseVolume, spawn,	{ .v = upmicb } },
+	{ ControlMask,	XF86XK_AudioLowerVolume, spawn,	{ .v = downmicb } },
 		
 	{ 0,	XF86XK_AudioRaiseVolume,	spawn,		{ .v = emiup } },
 
@@ -397,6 +400,7 @@ static Key keys[] = {
 	{ MODKEY,               XK_Return, 	zoom,           { 0 } },
 	{ MODKEY,               XK_Tab,    	view,           { 0 } },
 	{ MODKEY|ShiftMask,     XK_q,      	killclient,     { 0 } },
+	{ Mod1Mask,     	XK_F4,      	killclient,     { 0 } },
 	
 	{ MODKEY,               XK_t,      	setlayout,      { .v = &layouts[0] } },
 	{ MODKEY,               XK_f,      	setlayout,      { .v = &layouts[1] } },
@@ -466,6 +470,7 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            { 0 } },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      { 0 } },
 };
+
 void
 setlayoutex(const Arg *arg)
 {
