@@ -50,11 +50,11 @@ static const char col_gray3[]       = "#ffffff";
 
 /* current tag and current window font color */
 
-static const char col_gray4[]       = "#ffffff";
+static const char col_gray4[]       = "#000000";
 
 /* top bar second color and active window border color */
 
-static const char col_cyan[]        = "#7d7dba";
+static const char col_cyan[]        = "#eaf280";
 
 static const char *colors[][3]      = {
 
@@ -114,19 +114,19 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *rofi[] = { "rofi", "-show", "drun", NULL };
 
-static const char *upmica[] = { "amixer", "set", "-c", "2", "Capture", "1+", NULL };
-static const char *downmica[] = { "amixer", "set", "-c", "2", "Capture", "1-", NULL };
+static const char *upmica[] = { "amixer", "set", "-c", "3", "Capture", "1+", NULL };
+static const char *downmica[] = { "amixer", "set", "-c", "3", "Capture", "1-", NULL };
 
-static const char *upmicb[] = { "amixer", "set", "-c", "3", "Mic", "1+", NULL }; 
-static const char *downmicb[] = { "amixer", "set", "-c", "3", "Mic", "1-", NULL }; 
+static const char *upmicb[] = { "amixer", "set", "-c", "4", "Mic", "1+", NULL }; 
+static const char *downmicb[] = { "amixer", "set", "-c", "4", "Mic", "1-", NULL }; 
 
-static const char *mutemic[] = { "amixer", "set", "-c", "2", "Capture", "toggle", NULL }; 
+static const char *mutemic[] = { "amixer", "set", "-c", "3", "Capture", "toggle", NULL }; 
 
-static const char *mutemicb[] = { "amixer", "set", "-c", "3", "Mic", "toggle", NULL }; 
+static const char *mutemicb[] = { "amixer", "set", "-c", "4", "Mic", "toggle", NULL }; 
 
 
-static const char *emiup[] = { "amixer", "set", "Master", "1%+", NULL }; 
-static const char *emidown[] = { "amixer", "set", "Master", "1%-", NULL }; 
+static const char *emiup[] = { "amixer", "set", "-c", "3", "Master", "2%+", NULL }; 
+static const char *emidown[] = { "amixer", "set", "-c", "3", "Master", "2%-", NULL }; 
 
 static const char *plystop[] = { "playerctl", "--all-players", "stop", NULL }; 
 static const char *plypaus[] = { "playerctl", "--all-players", "pause", NULL }; 
@@ -180,8 +180,6 @@ static const char *msg1[] = { "Discord", NULL };
 static const char *msg2[] = { "alacritty", "-e", "weechat", NULL };
 
 static const char *brw1[] = { "firefox", NULL };
-static const char *brw2[] = { "vivaldi", NULL }; 
-
 static const char *prn1[] = { "firefox", "https://xvideos.com", NULL };
 static const char *prn2[] = { "firefox", "https://chan.sankakucomplex.com/", NULL };
 static const char *prn3[] = { "firefox", "https://spankbang.com", NULL };
@@ -335,7 +333,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,	XK_i,		spawn,		{ .v = msg2 } },
 
 	{ MODKEY,		XK_w,		spawn,		{ .v = brw1 } },
-	{ MODKEY|ShiftMask,	XK_w,		spawn,		{ .v = brw2 } },
+	{ MODKEY|ShiftMask,	XK_w,		spawn,		{ .v = msg1 } },
 
 	{ MODKEY,		XK_x,		spawn,		{ .v = prn1 } },
 	{ MODKEY|ShiftMask,	XK_x,		spawn,		{ .v = prn2 } }, 
