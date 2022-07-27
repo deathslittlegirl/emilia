@@ -54,7 +54,7 @@ static const char col_gray4[]       = "#000000";
 
 /* top bar second color and active window border color */
 
-static const char col_cyan[]        = "#eaf280";
+static const char col_cyan[]        = "#55ff7f";
 
 static const char *colors[][3]      = {
 
@@ -114,19 +114,19 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *rofi[] = { "rofi", "-show", "drun", NULL };
 
-static const char *upmica[] = { "amixer", "set", "-c", "3", "Capture", "1+", NULL };
-static const char *downmica[] = { "amixer", "set", "-c", "3", "Capture", "1-", NULL };
+static const char *upmica[] = { "amixer", "set", "-c", "2", "Capture", "1+", NULL };
+static const char *downmica[] = { "amixer", "set", "-c", "2", "Capture", "1-", NULL };
 
-static const char *upmicb[] = { "amixer", "set", "-c", "4", "Mic", "1+", NULL }; 
-static const char *downmicb[] = { "amixer", "set", "-c", "4", "Mic", "1-", NULL }; 
+static const char *upmicb[] = { "amixer", "set", "-c", "3", "Mic", "1+", NULL }; 
+static const char *downmicb[] = { "amixer", "set", "-c", "3", "Mic", "1-", NULL }; 
 
-static const char *mutemic[] = { "amixer", "set", "-c", "3", "Capture", "toggle", NULL }; 
+static const char *mutemic[] = { "amixer", "set", "-c", "2", "Capture", "toggle", NULL }; 
 
-static const char *mutemicb[] = { "amixer", "set", "-c", "4", "Mic", "toggle", NULL }; 
+static const char *mutemicb[] = { "amixer", "set", "-c", "3", "Mic", "toggle", NULL }; 
 
 
-static const char *emiup[] = { "amixer", "set", "-c", "3", "Master", "2%+", NULL }; 
-static const char *emidown[] = { "amixer", "set", "-c", "3", "Master", "2%-", NULL }; 
+static const char *emiup[] = { "amixer", "set", "-c", "2", "Master", "2%+", NULL }; 
+static const char *emidown[] = { "amixer", "set", "-c", "2", "Master", "2%-", NULL }; 
 
 static const char *plystop[] = { "playerctl", "--all-players", "stop", NULL }; 
 static const char *plypaus[] = { "playerctl", "--all-players", "pause", NULL }; 
@@ -235,21 +235,19 @@ static Key keys[] = {
 
 	/* utility */
 
-			
-	{ MODKEY,		XK_F2,		spawn,  	{ .v = dmenucmd } },		
+					
 	{ Mod1Mask,		XK_p,		spawn,		{ .v = dmenucmd } },
 	{ Mod1Mask,		XK_Tab, 	spawn, 		{ .v = dmenucmd } },
 	{ MODKEY,		XK_grave,	spawn,		{ .v = dmenucmd } }, 	
 	{ MODKEY|ShiftMask,	XK_semicolon,	spawn,		{ .v = dmenucmd } },
 
-	{ MODKEY,		XK_F1,		spawn,  	{ .v = rofi } },
 	{ ShiftMask|Mod1Mask,	XK_p,		spawn,		{ .v = rofi } },
 	{ Mod1Mask,		XK_grave,	spawn,  	{ .v = rofi } },
 
 	{ MODKEY|ShiftMask,	XK_Return, 	spawn, 		{ .v = termcmd } },
 	{ Mod1Mask|ShiftMask,	XK_Return, 	spawn, 		{ .v = termcmd } },
 	{ ControlMask|Mod1Mask, XK_t,		spawn,		{ .v = termcmd } },
-	
+	{ Mod1Mask,		XK_Escape,	spawn,		{ .v = termcmd } },	
 	{ ShiftMask,		XK_Print,	spawn,		{ .v = ssf } },
 	
 	{ 0,			XK_Print,	spawn,		{ .v = ss } },	
@@ -262,9 +260,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,	XK_f,		spawn,		{ .v = fm1 } },
 	{ MODKEY|ControlMask, 	XK_f, 		spawn,  	{ .v = fm2 } },
 	
-	{ MODKEY,		XK_e,		spawn,		{ .v = e1 } },	
-	{ MODKEY|ShiftMask, 	XK_e, 		spawn,    	{ .v = e2 } },
-	{ MODKEY|ControlMask,	XK_e,		spawn,		{ .v = e3 } },
+	{ MODKEY|ShiftMask,		XK_e,		spawn,		{ .v = e1 } },	
+	{ MODKEY|ControlMask, 	XK_e, 		spawn,    	{ .v = e2 } },
+	{ MODKEY|ControlMask|ShiftMask,	XK_e,		spawn,		{ .v = e3 } },
 
 	{ Mod1Mask,		XK_period,	spawn,		{ .v = emoji } },
 
@@ -295,6 +293,11 @@ static Key keys[] = {
 	{ 0,	XF86XK_AudioRaiseVolume,	spawn,		{ .v = emiup } },
 
 	{ 0,	XF86XK_AudioLowerVolume,	spawn,		{ .v = emidown } },
+	
+	{ MODKEY,	XK_F1,	spawn,		{ .v = emiup } },
+
+	{ MODKEY,	XK_F2,	spawn,		{ .v = emidown } },
+
 
 	{ 0,	XF86XK_AudioMute,		spawn,		{ .v = mutevol } }, 
 	
@@ -386,6 +389,8 @@ static Key keys[] = {
 	
 	{ MODKEY,               XK_j,      	focusstack,     { .i = +1 } },
 	{ MODKEY,               XK_k,      	focusstack,     { .i = -2 } },
+	{ MODKEY,               XK_q,      	focusstack,     { .i = +1 } },
+	{ MODKEY,               XK_e,      	focusstack,     { .i = -2 } },
 	{ MODKEY,               XK_Up,      	focusstack,     { .i = +1 } },
 	{ MODKEY,               XK_Down,      	focusstack,     { .i = -2 } },
 	
@@ -396,6 +401,7 @@ static Key keys[] = {
 	{ MODKEY,               XK_l,      	setmfact,       { .f = +0.02 } },
 	
 	{ MODKEY,               XK_Return, 	zoom,           { 0 } },
+	{ MODKEY,               XK_a, 	zoom,           { 0 } },
 	{ MODKEY,               XK_Tab,    	view,           { 0 } },
 	{ MODKEY|ShiftMask,     XK_q,      	killclient,     { 0 } },
 	{ Mod1Mask,     	XK_F4,      	killclient,     { 0 } },
