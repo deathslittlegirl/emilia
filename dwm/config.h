@@ -172,7 +172,8 @@ static const char *sysmon[] = { "alacritty", "-e", "htop", NULL };
 
 static const char *e1[] = { "gnome-text-editor", NULL };
 static const char *e2[] =  { "emacs", NULL };
-static const char *e3[] = { "alacritty", "-e", "vim", NULL };
+static const char *e3[] = { "dev.lapce.lapce", NULL };
+static const char *mail[] = { "thunderbird", NULL }; 
 
 /* web */
 
@@ -222,6 +223,10 @@ static const char *game2[] = { "supertuxkart", NULL };
 
 static const char *cleaner[] = { "bleachbit", NULL };
 
+/* visualizer */
+
+static const char *visualizer[] = { "alacritty", "-e", "cmatrix", "-r", NULL };
+
 /* commands */
 
 static Key keys[] = {
@@ -237,10 +242,10 @@ static Key keys[] = {
 
 					
 	{ Mod1Mask,		XK_p,		spawn,		{ .v = dmenucmd } },
-	{ Mod1Mask,		XK_Tab, 	spawn, 		{ .v = dmenucmd } },
+	{ MODKEY,		XK_Tab, 	spawn, 		{ .v = dmenucmd } },
 	{ MODKEY,		XK_grave,	spawn,		{ .v = dmenucmd } }, 	
 	{ MODKEY|ShiftMask,	XK_semicolon,	spawn,		{ .v = dmenucmd } },
-
+	{ MODKEY,		XK_d,		spawn,		{ .v = dmenucmd } },
 	{ ShiftMask|Mod1Mask,	XK_p,		spawn,		{ .v = rofi } },
 	{ Mod1Mask,		XK_grave,	spawn,  	{ .v = rofi } },
 
@@ -258,14 +263,16 @@ static Key keys[] = {
 	{ ShiftMask, 		XK_Escape,	spawn,		{ .v = sysmon } },
 
 	{ MODKEY|ShiftMask,	XK_f,		spawn,		{ .v = fm1 } },
-	{ MODKEY|ControlMask, 	XK_f, 		spawn,  	{ .v = fm2 } },
+	{ MODKEY|Mod1Mask, 	XK_f, 		spawn,  	{ .v = fm2 } },
 	
 	{ MODKEY|ShiftMask,		XK_e,		spawn,		{ .v = e1 } },	
 	{ MODKEY|ControlMask, 	XK_e, 		spawn,    	{ .v = e2 } },
 	{ MODKEY|ControlMask|ShiftMask,	XK_e,		spawn,		{ .v = e3 } },
 
 	{ Mod1Mask,		XK_period,	spawn,		{ .v = emoji } },
-
+	
+	{ MODKEY|ControlMask, 		XK_v, 		spawn,		{ .v = visualizer } },
+	
 	/* system control */
 	
 	{ 0,	XF86XK_MonBrightnessUp,		spawn,		{ .v = screenup } },
@@ -343,7 +350,8 @@ static Key keys[] = {
 	{ ControlMask|MODKEY,	XK_x, 		spawn,		{ .v = prn3 } },
 
 	{ MODKEY|ControlMask,	XK_w,		spawn,		{ .v = github } },
-	
+
+	{ MODKEY|ControlMask,	XK_m,		spawn,		{ .v = mail } },	
 
 	/* audio */
 
@@ -368,7 +376,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,	XK_p,		spawn,		{ .v = pe } },
 	
 	{ MODKEY|ShiftMask,	XK_n,		spawn,		{ .v = wp } },
-
+	
 	/* video */
 
 	{ MODKEY,		XK_v,		spawn,		{ .v = vv } },	
@@ -401,8 +409,8 @@ static Key keys[] = {
 	{ MODKEY,               XK_l,      	setmfact,       { .f = +0.02 } },
 	
 	{ MODKEY,               XK_Return, 	zoom,           { 0 } },
-	{ MODKEY,               XK_a, 	zoom,           { 0 } },
-	{ MODKEY,               XK_Tab,    	view,           { 0 } },
+	{ MODKEY,               XK_a, 		zoom,           { 0 } },
+	{ Mod1Mask,             XK_Tab,    	view,           { 0 } },	
 	{ MODKEY|ShiftMask,     XK_q,      	killclient,     { 0 } },
 	{ Mod1Mask,     	XK_F4,      	killclient,     { 0 } },
 	
