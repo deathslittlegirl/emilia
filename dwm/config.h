@@ -27,14 +27,15 @@ static const int startwithgaps = 1;
 static const unsigned int gappx = 20;
 static const unsigned int snap      = 32;       /* snap pixel */
 
+
 /* ok so like its just aesthetic sure but */
 
 
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 
-static const char *fonts[]          = { "terminus:size=9" };
-static const char dmenufont[]       = "terminus:size=9";
+static const char *fonts[]          = { "terminus:size=10" };
+static const char dmenufont[]       = "terminus:size=10";
 
 /* background color */
 
@@ -50,11 +51,11 @@ static const char col_gray3[]       = "#ffffff";
 
 /* current tag and current window font color */
 
-static const char col_gray4[]       = "#000000";
+static const char col_gray4[]       = "#ffffff";
 
 /* top bar second color and active window border color */
 
-static const char col_cyan[]        = "#55ff7f";
+static const char col_cyan[]        = "#5500ff";
 
 static const char *colors[][3]      = {
 
@@ -67,7 +68,7 @@ static const char *colors[][3]      = {
 
 /* tagging */
 
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "X", "XI", "XII", "XIII", "XV" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -145,8 +146,8 @@ static const char *screendown[] = { "light", "-U", "10", NULL };
 static const char *kbdup[] = { "light", "-s", "sysfs/leds/asus::kbd_backlight", "-A", "50",  NULL };
 static const char *kbddown[] = { "light", "-s", "sysfs/leds/asus::kbd_backlight", "-U", "50",  NULL };
 
-static const char *dwmcon1[] = { "alacritty", "-e", "vim", "/home/neko/Downloads/sorc/dwm/config.h", NULL };
-static const char *dwmcon2[] = { "alacritty", "-e", "vim", "/home/neko/.dwm/autostart.sh", NULL };
+static const char *dwmcon1[] = { "emacs", "/home/neko/Downloads/sorc/dwm/config.h", NULL };
+static const char *dwmcon2[] = { "emacs", "/home/neko/.dwm/autostart.sh", NULL };
 
 static const char *sctrl1[] = { "pavucontrol", NULL };
 static const char *sctrl2[] = { "alacritty", "-e", "alsamixer", NULL };
@@ -160,13 +161,17 @@ static const char *ss[] = { "scrot", "-s", NULL };
 static const char *ssf[] = { "scrot", "-f", NULL };
 static const char *sr[] = { "simplescreenrecorder", NULL };
 
-static const char *fm1[] = { "nemo", NULL };
+static const char *fm1[] = { "caja", NULL };
 static const char *fm2[] = { "alacritty", "-e", "mc", "-b", NULL };
 
 static const char *pwmgr[] = { "keepassxc", NULL };
 
 static const char *emoji[] = { "gnome-characters", NULL };
 static const char *sysmon[] = { "alacritty", "-e", "htop", NULL };
+
+static const char *transset[] = { "transset-df", NULL };
+
+static const char *nicotine[] = { "org.nicotine_plus.Nicotine", NULL };
 
 /* general applications */
 
@@ -186,7 +191,7 @@ static const char *prn2[] = { "firefox", "https://chan.sankakucomplex.com/", NUL
 static const char *prn3[] = { "firefox", "https://spankbang.com", NULL };
 
 static const char *github[] = { "io.github.shiftey.Desktop", NULL };
-
+static const char *vpn[] = { "riseup-vpn.launcher", NULL }; 
 
 /* photo */
 
@@ -242,17 +247,21 @@ static Key keys[] = {
 
 					
 	{ Mod1Mask,		XK_p,		spawn,		{ .v = dmenucmd } },
-	{ MODKEY,		XK_Tab, 	spawn, 		{ .v = dmenucmd } },
-	{ MODKEY,		XK_grave,	spawn,		{ .v = dmenucmd } }, 	
-	{ MODKEY|ShiftMask,	XK_semicolon,	spawn,		{ .v = dmenucmd } },
-	{ MODKEY,		XK_d,		spawn,		{ .v = dmenucmd } },
-	{ ShiftMask|Mod1Mask,	XK_p,		spawn,		{ .v = rofi } },
 	{ Mod1Mask,		XK_grave,	spawn,  	{ .v = rofi } },
+	{ MODKEY,		XK_grave,	spawn,		{ .v = dmenucmd } }, 		
+	{ MODKEY,		XK_p,		spawn,		{ .v = rofi } },
+
+	
+	{ Mod1Mask,		XK_F1,		spawn,		{ .v = dmenucmd } },
+	{ Mod1Mask,		XK_F2,		spawn,		{ .v = rofi } },
 
 	{ MODKEY|ShiftMask,	XK_Return, 	spawn, 		{ .v = termcmd } },
 	{ Mod1Mask|ShiftMask,	XK_Return, 	spawn, 		{ .v = termcmd } },
 	{ ControlMask|Mod1Mask, XK_t,		spawn,		{ .v = termcmd } },
 	{ Mod1Mask,		XK_Escape,	spawn,		{ .v = termcmd } },	
+	
+	{ MODKEY|ShiftMask,	XK_t,		spawn,		{ .v = termcmd } },
+
 	{ ShiftMask,		XK_Print,	spawn,		{ .v = ssf } },
 	
 	{ 0,			XK_Print,	spawn,		{ .v = ss } },	
@@ -264,15 +273,17 @@ static Key keys[] = {
 
 	{ MODKEY|ShiftMask,	XK_f,		spawn,		{ .v = fm1 } },
 	{ MODKEY|Mod1Mask, 	XK_f, 		spawn,  	{ .v = fm2 } },
+	{ MODKEY|ControlMask, 	XK_f, 		spawn,  	{ .v = fm2 } },
 	
-	{ MODKEY|ShiftMask,		XK_e,		spawn,		{ .v = e1 } },	
+	{ MODKEY|ShiftMask,	XK_e,		spawn,		{ .v = e1 } },	
 	{ MODKEY|ControlMask, 	XK_e, 		spawn,    	{ .v = e2 } },
-	{ MODKEY|ControlMask|ShiftMask,	XK_e,		spawn,		{ .v = e3 } },
+	{ MODKEY|ControlMask|ShiftMask,	XK_e,	spawn,		{ .v = e3 } },
 
 	{ Mod1Mask,		XK_period,	spawn,		{ .v = emoji } },
 	
-	{ MODKEY|ControlMask, 		XK_v, 		spawn,		{ .v = visualizer } },
-	
+	{ MODKEY|ControlMask, 	XK_v, 		spawn,		{ .v = visualizer } },
+	{ MODKEY|ControlMask,   XK_t,       spawn,      { .v = transset } },
+
 	/* system control */
 	
 	{ 0,	XF86XK_MonBrightnessUp,		spawn,		{ .v = screenup } },
@@ -288,6 +299,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,	XF86XK_AudioMute,	spawn,		{ .v = mutemicb } },
 	
 	{ MODKEY,	XK_Escape,		spawn,		{ .v = mutemic } },
+	{ 0,	XK_F12,				spawn,		{ .v = mutemic } },
 	{ MODKEY|ShiftMask,	XK_Escape,		spawn,		{ .v = mutemicb } },
 
 
@@ -301,10 +313,13 @@ static Key keys[] = {
 
 	{ 0,	XF86XK_AudioLowerVolume,	spawn,		{ .v = emidown } },
 	
-	{ MODKEY,	XK_F1,	spawn,		{ .v = emiup } },
+	{ MODKEY,	XK_F2,	spawn,		{ .v = emiup } },
 
-	{ MODKEY,	XK_F2,	spawn,		{ .v = emidown } },
+	{ MODKEY,	XK_F1,	spawn,		{ .v = emidown } },
 
+	{ MODKEY|ShiftMask, XK_F1, spawn,	{ .v = downmica } },
+
+	{ MODKEY|ShiftMask, XK_F2, spawn,	{ .v = upmica } },
 
 	{ 0,	XF86XK_AudioMute,		spawn,		{ .v = mutevol } }, 
 	
@@ -325,6 +340,7 @@ static Key keys[] = {
 	{ ControlMask,	XF86XK_AudioNext,		spawn,		{ .v = plyfore2 } },
 
 	{ ControlMask,	XF86XK_AudioPrev,		spawn,		{ .v = plyback2 } },
+	
 
 
 	/* quit */
@@ -339,31 +355,31 @@ static Key keys[] = {
 	
 	/* web */
 
-	{ MODKEY|ShiftMask,	XK_i,		spawn,		{ .v = msg1 } },
-	{ MODKEY|ControlMask,	XK_i,		spawn,		{ .v = msg2 } },
+	{ MODKEY|ShiftMask,	    XK_i,		spawn,		{ .v = msg1 } },
+	{ MODKEY|ControlMask,	XK_i,		spawn,		{ .v = vpn } },
 
-	{ MODKEY,		XK_w,		spawn,		{ .v = brw1 } },
-	{ MODKEY|ShiftMask,	XK_w,		spawn,		{ .v = msg1 } },
+	{ MODKEY,		        XK_w,		spawn,		{ .v = brw1 } },
+	{ MODKEY|ShiftMask,	    XK_w,		spawn,		{ .v = msg1 } },
 
-	{ MODKEY,		XK_x,		spawn,		{ .v = prn1 } },
-	{ MODKEY|ShiftMask,	XK_x,		spawn,		{ .v = prn2 } }, 
-	{ ControlMask|MODKEY,	XK_x, 		spawn,		{ .v = prn3 } },
+	{ Mod1Mask,		        XK_x,		spawn,		{ .v = prn1 } },
+	{ Mod1Mask|ShiftMask,	XK_x,		spawn,		{ .v = prn2 } }, 
 
 	{ MODKEY|ControlMask,	XK_w,		spawn,		{ .v = github } },
 
 	{ MODKEY|ControlMask,	XK_m,		spawn,		{ .v = mail } },	
-
+	{ MODKEY|ControlMask,   XK_n,       spawn,      { .v = nicotine } },
+	
 	/* audio */
 
-	{ MODKEY|ShiftMask,	XK_m,		spawn,		{ .v = m1 } },
-	{ MODKEY|ControlMask,	XK_m,		spawn,		{ .v = m2 } },
-	{ MODKEY|Mod1Mask,		XK_m,		spawn,		{ .v = m3 } },
+	{ MODKEY|ShiftMask,	   XK_m,		spawn,		{ .v = m1 } },
+	{ MODKEY|ControlMask,  XK_m,		spawn,		{ .v = m2 } },
+	{ MODKEY|Mod1Mask,	   XK_m,		spawn,		{ .v = m3 } },
 	
-	{ MODKEY,		XK_r,		spawn,		{ .v = radio1 } },
-	{ MODKEY|ShiftMask,	XK_r,		spawn,		{ .v = radio2 } },
+	{ MODKEY,		       XK_r,		spawn,		{ .v = radio1 } },
+	{ MODKEY|ShiftMask,	   XK_r,		spawn,		{ .v = radio2 } },
 	
-	{ Mod1Mask,		XK_d,		spawn,		{ .v = daw1 } },
-	{ ControlMask|Mod1Mask,	XK_d,		spawn,		{ .v = daw2 } },
+	{ Mod1Mask,		       XK_d,		spawn,		{ .v = daw1 } },
+	{ ControlMask|Mod1Mask, XK_d,		spawn,		{ .v = daw2 } },
 
 	{ MODKEY,		XK_s,		spawn,		{ .v = sctrl1 } },
 	{ MODKEY|ShiftMask,	XK_s,		spawn,		{ .v = sctrl2 } },
@@ -372,7 +388,7 @@ static Key keys[] = {
 	/* photo */
 
 	{ MODKEY,		XK_p,		spawn,		{ .v = pv } },
-	{ MODKEY,		XK_c,		spawn,		{ .v = c } },
+	{ Mod1Mask,		XK_c,		spawn,		{ .v = c } },
 	{ MODKEY|ShiftMask,	XK_p,		spawn,		{ .v = pe } },
 	
 	{ MODKEY|ShiftMask,	XK_n,		spawn,		{ .v = wp } },
@@ -389,7 +405,6 @@ static Key keys[] = {
 	{ ControlMask|MODKEY,	XK_g,		spawn,		{ .v = steam } },
 	
 	/* layouts, focus, etc. */
-
 	
 	{ Mod1Mask,		XK_f,		togglecanfocusfloating,		{0} },
 
@@ -397,19 +412,21 @@ static Key keys[] = {
 	
 	{ MODKEY,               XK_j,      	focusstack,     { .i = +1 } },
 	{ MODKEY,               XK_k,      	focusstack,     { .i = -2 } },
-	{ MODKEY,               XK_q,      	focusstack,     { .i = +1 } },
-	{ MODKEY,               XK_e,      	focusstack,     { .i = -2 } },
+	{ MODKEY,               XK_e,      	focusstack,     { .i = +1 } },
+	{ MODKEY,               XK_q,      	focusstack,     { .i = -2 } },
 	{ MODKEY,               XK_Up,      	focusstack,     { .i = +1 } },
 	{ MODKEY,               XK_Down,      	focusstack,     { .i = -2 } },
 	
-	{ MODKEY,               XK_i,      	incnmaster,     { .i = +1 } },
-	{ MODKEY,               XK_d,      	incnmaster,     { .i = -1 } },
+	{ Mod1Mask|ShiftMask,               XK_i,      	incnmaster,     { .i = +1 } },
+	{ Mod1Mask|ShiftMask,               XK_d,      	incnmaster,     { .i = -1 } },
 	
 	{ MODKEY,               XK_h,      	setmfact,       { .f = -0.02 } },
 	{ MODKEY,               XK_l,      	setmfact,       { .f = +0.02 } },
+	{ MODKEY,               XK_a,      	setmfact,       { .f = -0.02 } },
+	{ MODKEY,               XK_d,      	setmfact,       { .f = +0.02 } },
 	
 	{ MODKEY,               XK_Return, 	zoom,           { 0 } },
-	{ MODKEY,               XK_a, 		zoom,           { 0 } },
+	{ MODKEY,               XK_Tab, 	zoom,           { 0 } },
 	{ Mod1Mask,             XK_Tab,    	view,           { 0 } },	
 	{ MODKEY|ShiftMask,     XK_q,      	killclient,     { 0 } },
 	{ Mod1Mask,     	XK_F4,      	killclient,     { 0 } },
@@ -427,11 +444,15 @@ static Key keys[] = {
 	
 	{ MODKEY,               XK_comma,  	focusmon,      	{ .i = -1 } },
 	{ MODKEY,               XK_period, 	focusmon,      	{ .i = +1 } },
+	{ MODKEY,               XK_z,  		focusmon,      	{ .i = -1 } },
+	{ MODKEY,               XK_c, 		focusmon,      	{ .i = +1 } },
 	{ MODKEY,               XK_Left,  	focusmon,      	{ .i = -1 } },
 	{ MODKEY,               XK_Right, 	focusmon,      	{ .i = +1 } },
 	
 	{ MODKEY|ShiftMask,     XK_comma,  	tagmon,        	{ .i = -1 } },
 	{ MODKEY|ShiftMask,     XK_period, 	tagmon,         { .i = +1 } },
+	{ MODKEY|ShiftMask,     XK_z,  		tagmon,        	{ .i = -1 } },
+	{ MODKEY|ShiftMask,     XK_c, 		tagmon,         { .i = +1 } },
 	{ MODKEY|ShiftMask,     XK_Left,  	tagmon,        	{ .i = -1 } },
 	{ MODKEY|ShiftMask,     XK_Right, 	tagmon,         { .i = +1 } },
 	
