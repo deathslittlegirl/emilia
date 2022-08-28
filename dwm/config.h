@@ -102,6 +102,8 @@ static const Layout layouts[] = {
 	{ "><>",      	NULL },    /* no layout function means floating behavior */
 	{ "[M]",      	monocle },
 	{ "[]=",	tile },
+	{ "|M|",      centeredmaster },
+	{ ">M>",      centeredfloatingmaster },
 	};
 
 /* dmenu */
@@ -130,14 +132,18 @@ static const char *emiup[] = { "amixer", "set", "-c", "2", "Master", "2%+", NULL
 static const char *emidown[] = { "amixer", "set", "-c", "2", "Master", "2%-", NULL }; 
 
 static const char *plystop[] = { "playerctl", "--all-players", "stop", NULL }; 
-static const char *plypaus[] = { "playerctl", "--all-players", "pause", NULL }; 
-static const char *plyplay[] = { "playerctl", "--all-players", "play", NULL }; 
+static const char *plyplay[] = { "playerctl", "--all-players", "play-pause", NULL }; 
 static const char *plyback[] = { "playerctl", "position", "3-", NULL };
 static const char *plyfore[] = { "playerctl", "position", "3+", NULL };
 static const char *plyprev[] = { "playerctl", "previous", NULL};
 static const char *plynext[] = { "playerctl", "next", NULL};
 static const char *plyback2[] = { "playerctl", "position", "10-", NULL };
 static const char *plyfore2[] = { "playerctl", "position", "10+", NULL };
+static const char *plyloop[] = { "playerctl", "loop", "Track" }; 
+static const char *plyloop2[] = { "playerctl", "loop", "Playlist" };
+static const char *plyloop3[] = { "playerctl", "loop", "None" };
+static const char *plyvolup[] = { "playerctl", "volume", "0.1+"};
+static const char *plyvoldown[] = { "playerctl", "volume", "0.1-"};
 static const char *mutevol[] = { "amixer", "set", "-c", "2", "Master", "toggle", NULL };
 
 static const char *screenup[] = { "light", "-A", "10", NULL };
@@ -183,12 +189,10 @@ static const char *mail[] = { "thunderbird", NULL };
 /* web */
 
 static const char *msg1[] = { "Discord", NULL };
-static const char *msg2[] = { "alacritty", "-e", "weechat", NULL };
 
 static const char *brw1[] = { "firefox", NULL };
 static const char *prn1[] = { "firefox", "https://xvideos.com", NULL };
 static const char *prn2[] = { "firefox", "https://chan.sankakucomplex.com/", NULL };
-static const char *prn3[] = { "firefox", "https://spankbang.com", NULL };
 
 static const char *github[] = { "io.github.shiftey.Desktop", NULL };
 static const char *vpn[] = { "riseup-vpn.launcher", NULL }; 
@@ -226,7 +230,7 @@ static const char *game2[] = { "supertuxkart", NULL };
 
 /* cleaners */
 
-static const char *cleaner[] = { "bleachbit", NULL };
+static const char *cleaner[] = { "sudo", "bleachbit", NULL };
 
 /* visualizer */
 
@@ -312,7 +316,12 @@ static Key keys[] = {
 	{ 0,	XF86XK_AudioRaiseVolume,	spawn,		{ .v = emiup } },
 
 	{ 0,	XF86XK_AudioLowerVolume,	spawn,		{ .v = emidown } },
-	
+
+	{ Mod1Mask, XF86XK_AudioRaiseVolume, spawn,     { .v = plyvolup } },
+
+	{ Mod1Mask, XF86XK_AudioLowerVolume, spawn,     { .v = plyvoldown } },
+
+
 	{ MODKEY,	XK_F2,	spawn,		{ .v = emiup } },
 
 	{ MODKEY,	XK_F1,	spawn,		{ .v = emidown } },
@@ -325,10 +334,8 @@ static Key keys[] = {
 	
 	{ 0,	XF86XK_AudioStop,		spawn,		{ .v = plystop } },
 
-	{ 0,	XF86XK_AudioPlay,		spawn,		{ .v = plypaus } },
-
-	{ MODKEY,	XF86XK_AudioPlay,		spawn,		{ .v = plyplay } },
-
+	{ 0,	XF86XK_AudioPlay,		spawn,		{ .v = plyplay } },
+	
 	{ 0,	XF86XK_AudioNext,		spawn,		{ .v = plynext } },
 
 	{ 0, 	XF86XK_AudioPrev,		spawn,		{ .v = plyprev } },
@@ -341,11 +348,15 @@ static Key keys[] = {
 
 	{ ControlMask,	XF86XK_AudioPrev,		spawn,		{ .v = plyback2 } },
 	
+	{ Mod1Mask,      XF86XK_AudioPlay,       spawn,      { .v = plyloop } },
 
+	{ Mod1Mask|ShiftMask,      XF86XK_AudioPlay,       spawn,      { .v = plyloop2 } },
 
+	{ ControlMask|Mod1Mask,    XF86XK_AudioPlay,       spawn,      { .v = plyloop3 } },
+	
 	/* quit */
 
-	{ MODKEY,		  XK_End,	  quit,		  {0} },
+	{ MODKEY,		          XK_End,	      quit,		      {0} },
 	{ Mod1Mask|ShiftMask,	  XK_Escape,      quit,	          {0} },
 	{ ControlMask|Mod1Mask,	  XK_Delete,      quit,	          {0} },
 	
@@ -434,7 +445,9 @@ static Key keys[] = {
 	{ MODKEY,               XK_t,      	setlayout,      { .v = &layouts[0] } },
 	{ MODKEY,               XK_f,      	setlayout,      { .v = &layouts[1] } },
 	{ MODKEY,               XK_m,      	setlayout,      { .v = &layouts[2] } },
-	{ MODKEY,               XK_y,      	setlayout,      { .v = &layouts[3]} },
+	{ MODKEY,               XK_y,      	setlayout,      { .v = &layouts[3] } },
+	{ ControlMask|MODKEY,   XK_y,       setlayout,      { .v = &layouts[4] } },
+	{ MODKEY|ShiftMask,     XK_y,       setlayout,      { .v = &layouts[5] } },
 	
 	{ MODKEY|ShiftMask,     XK_space,  	togglefloating, { 0 } },
 	{ MODKEY,               XK_space,  	setlayout,      { 0 } },
