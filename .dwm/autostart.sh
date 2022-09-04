@@ -1,8 +1,11 @@
 #!/bin/sh
 
 exec dunst &
+exec /usr/libexec/kdeconnectd & 
 exec nitrogen --restore &
-exec xcompmgr -f -D 5 &
+exec goodvibes --without-ui &
+exec warpd &
+exec picom --backend glx --vsync opengl-swc --paint-on-overlay &
 
 exec amixer set -c 2 'Internal Mic Boost' 0 &
 exec amixer set -c 2 'Capture' 52 & 
@@ -14,16 +17,16 @@ while true; do
 
 	volume=$(amixer get Master | awk -F'[][]' 'END{print $2 }')
 
-	micvolume=$(amixer get -c 2 Capture | awk -F'[][]' 'END{ print $6":"$2 }')	
+	micvolume=$(amixer get -c 2 Capture | awk -F'[][]' 'END{ print $6"::"$2 }')	
 	#micbvolume=$(amixer get -c 3 Mic | awk -F '[][]' 'END{ print $6":"$2 }')
 	
 	temperature=$(sed 's/000$/°C/' /sys/class/thermal/thermal_zone0/temp)
 
 	battery=$(cat /sys/class/power_supply/BAT0/capacity)
 
-	clock=$(date +'%m-%d %a %H:%M:%S:%N')	
+	clock=$(date +'%m\%d %a %H:%M:%S.%N')	
 
-	xsetroot -name " T: $temperature | M: $micvolume | V: $volume | B: $battery% :: $clock " &
+	xsetroot -name " T: $temperature | M: $micvolume | V: $volume | B: $battery% | $clock " &
 	
 	wait
 done &
