@@ -68,7 +68,7 @@ static const char *colors[][3]      = {
 
 /* tagging */
 
-static const char *tags[] = { "X", "XI", "XII", "XIII", "XV" };
+static const char *tags[] = { "X", "XI", "XII", "XIII" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -88,7 +88,7 @@ static const float mfact     = 0.62; /* factor of master area size [0.05..0.95] 
 
 static const int nmaster     = 1;    /* number of clients in master area */
 
-static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 
 static const int lockfullscreen = 0; /* 1 will force focus on the fullscreen window */
 
@@ -114,7 +114,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 
 /* system control */
 
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *termcmd[]  = { "alacritty", NULL};
 static const char *rofi[] = { "rofi", "-show", "drun", NULL };
 
 static const char *upmica[] = { "amixer", "set", "-c", "2", "Capture", "1+", NULL };
@@ -127,6 +127,7 @@ static const char *mutemic[] = { "amixer", "set", "-c", "2", "Capture", "toggle"
 
 static const char *mutemicb[] = { "amixer", "set", "-c", "3", "Mic", "toggle", NULL }; 
 
+static const char *killmicboost[] = { "amixer", "set", "-c", "2", "'Internal Mic Boost'", "0", NULL };
 
 static const char *emiup[] = { "amixer", "set", "-c", "2", "Master", "2%+", NULL }; 
 static const char *emidown[] = { "amixer", "set", "-c", "2", "Master", "2%-", NULL }; 
@@ -188,11 +189,11 @@ static const char *mail[] = { "thunderbird", NULL };
 
 /* web */
 
-static const char *msg1[] = { "Discord", NULL };
+static const char *msg1[] = { "com.discordapp.Discord", NULL };
 
-static const char *brw1[] = { "firefox", NULL };
-static const char *prn1[] = { "firefox", "https://xvideos.com", NULL };
-static const char *prn2[] = { "firefox", "https://chan.sankakucomplex.com/", NULL };
+static const char *brw1[] = { "icecat", NULL };
+static const char *prn1[] = { "icecat", "https://xvideos.com", NULL };
+static const char *prn2[] = { "icecat", "https://chan.sankakucomplex.com/", NULL };
 
 static const char *github[] = { "io.github.shiftey.Desktop", NULL };
 static const char *vpn[] = { "riseup-vpn.launcher", NULL }; 
@@ -200,7 +201,7 @@ static const char *vpn[] = { "riseup-vpn.launcher", NULL };
 /* photo */
 
 static const char *pe[] = { "gimp", "-n", "-a",  NULL };
-static const char *pv[] = { "nomacs", NULL }; 
+static const char *pv[] = { "sxiv", NULL }; 
 static const char *c[] = { "org.kde.kcolorchooser", NULL };
 
 /* video */
@@ -223,14 +224,12 @@ static const char *radio2[] = { "de.haeckerfelix.Shortwave", NULL };
 /* gaming */
 
 static const char *steam[] = { "steam", NULL };
-/*static const char *lutris[] = { "lutris", NULL };*/
-
 static const char *game1[] = { "alacritty", "-e", "cataclysm", NULL };
 static const char *game2[] = { "supertuxkart", NULL };
 
 /* cleaners */
 
-static const char *cleaner[] = { "sudo", "bleachbit", NULL };
+static const char *cleaner[] = { "bleachbit", NULL };
 
 /* visualizer */
 
@@ -245,7 +244,7 @@ static Key keys[] = {
 	/* access configuration */
 
 	{ MODKEY,		XK_slash,	spawn,		{ .v = dwmcon1 } },
-	{ MODKEY|ShiftMask,	XK_slash,	spawn,		{ .v = dwmcon2 } },
+	{ MODKEY|ShiftMask,	XK_slash,	spawn,	{ .v = dwmcon2 } },
 
 	/* utility */
 
@@ -259,10 +258,10 @@ static Key keys[] = {
 	{ Mod1Mask,		XK_F1,		spawn,		{ .v = dmenucmd } },
 	{ Mod1Mask,		XK_F2,		spawn,		{ .v = rofi } },
 
-	{ MODKEY|ShiftMask,	XK_Return, 	spawn, 		{ .v = termcmd } },
-	{ Mod1Mask|ShiftMask,	XK_Return, 	spawn, 		{ .v = termcmd } },
-	{ ControlMask|Mod1Mask, XK_t,		spawn,		{ .v = termcmd } },
-	{ Mod1Mask,		XK_Escape,	spawn,		{ .v = termcmd } },	
+	{ MODKEY|ShiftMask,	XK_Return, 	    spawn,  { .v = termcmd } },
+	{ Mod1Mask|ShiftMask,	XK_Return, 	spawn, 	{ .v = termcmd } },
+	{ ControlMask|Mod1Mask, XK_t,		spawn,	{ .v = termcmd } },
+	{ Mod1Mask,		XK_Escape,	        spawn,  { .v = termcmd } },	
 	
 	{ MODKEY|ShiftMask,	XK_t,		spawn,		{ .v = termcmd } },
 
@@ -305,7 +304,7 @@ static Key keys[] = {
 	{ MODKEY,	XK_Escape,		spawn,		{ .v = mutemic } },
 	{ 0,	XK_F12,				spawn,		{ .v = mutemic } },
 	{ MODKEY|ShiftMask,	XK_Escape,		spawn,		{ .v = mutemicb } },
-
+	{ ControlMask|MODKEY, XK_Escape,    spawn,      { .v = killmicboost } },
 
 	{ MODKEY,	XF86XK_AudioRaiseVolume, spawn,		{ .v = upmica } },
 	{ MODKEY,	XF86XK_AudioLowerVolume, spawn,		{ .v = downmica } },
@@ -320,7 +319,6 @@ static Key keys[] = {
 	{ Mod1Mask, XF86XK_AudioRaiseVolume, spawn,     { .v = plyvolup } },
 
 	{ Mod1Mask, XF86XK_AudioLowerVolume, spawn,     { .v = plyvoldown } },
-
 
 	{ MODKEY,	XK_F2,	spawn,		{ .v = emiup } },
 
@@ -377,14 +375,15 @@ static Key keys[] = {
 
 	{ MODKEY|ControlMask,	XK_w,		spawn,		{ .v = github } },
 
-	{ MODKEY|ControlMask,	XK_m,		spawn,		{ .v = mail } },	
+	{ ControlMask|Mod1Mask,	XK_m,		spawn,		{ .v = mail } },	
 	{ MODKEY|ControlMask,   XK_n,       spawn,      { .v = nicotine } },
 	
 	/* audio */
 
 	{ MODKEY|ShiftMask,	   XK_m,		spawn,		{ .v = m1 } },
 	{ MODKEY|ControlMask,  XK_m,		spawn,		{ .v = m2 } },
-	{ MODKEY|Mod1Mask,	   XK_m,		spawn,		{ .v = m3 } },
+
+	{ MODKEY|Mod1Mask,     XK_m,        spawn,      { .v = m3 } },
 	
 	{ MODKEY,		       XK_r,		spawn,		{ .v = radio1 } },
 	{ MODKEY|ShiftMask,	   XK_r,		spawn,		{ .v = radio2 } },
@@ -406,7 +405,7 @@ static Key keys[] = {
 	
 	/* video */
 
-	{ MODKEY,		XK_v,		spawn,		{ .v = vv } },	
+	{ MODKEY,		    XK_v,		spawn,		{ .v = vv } },	
 	{ MODKEY|ShiftMask,	XK_v,		spawn,		{ .v = ve } },
 
 	/* gaming */
