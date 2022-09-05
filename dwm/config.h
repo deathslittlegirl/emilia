@@ -280,7 +280,7 @@ static Key keys[] = {
 	
 	{ MODKEY|ShiftMask,	XK_e,		spawn,		{ .v = e1 } },	
 	{ MODKEY|ControlMask, 	XK_e, 		spawn,    	{ .v = e2 } },
-	{ MODKEY|ControlMask|ShiftMask,	XK_e,	spawn,		{ .v = e3 } },
+	{ MODKEY|Mod1Mask,	XK_e,	spawn,		{ .v = e3 } },
 
 	{ Mod1Mask,		XK_period,	spawn,		{ .v = emoji } },
 	

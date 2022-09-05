@@ -5,11 +5,7 @@ exec /usr/libexec/kdeconnectd &
 exec nitrogen --restore &
 exec goodvibes --without-ui &
 exec warpd &
-exec picom --backend glx --vsync opengl-swc --paint-on-overlay &
-
-exec amixer set -c 2 'Internal Mic Boost' 0 &
-exec amixer set -c 2 'Capture' 52 & 
-exec amixer cset -c 2 numid=8,iface=MIXER,name='Capture Switch' off &
+exec picom --backend glx --vsync opengl-swc --paint-on-overlay --glx-no-stencil &
 
 while true; do
 	
@@ -24,9 +20,9 @@ while true; do
 
 	battery=$(cat /sys/class/power_supply/BAT0/capacity)
 
-	clock=$(date +'%m\%d %a %H:%M:%S.%N')	
+	clock=$(date +'%m::%d %a %H:%M:%S::%N')	
 
-	xsetroot -name " T: $temperature | M: $micvolume | V: $volume | B: $battery% | $clock " &
+	xsetroot -name " T::$temperature | M: $micvolume | V::$volume | B::$battery% | $clock " &
 	
 	wait
 done &
