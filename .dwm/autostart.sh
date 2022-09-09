@@ -5,13 +5,16 @@ exec /usr/libexec/kdeconnectd &
 exec nitrogen --restore &
 exec goodvibes --without-ui &
 exec warpd &
-exec picom --backend glx --vsync opengl-swc --paint-on-overlay --glx-no-stencil &
+exec picom --backend glx --vsync --paint-on-overlay --experimental-backends --glx-no-stencil &
+
+exec xrandr --output HDMI-A-0 --set TearFree on &
+exec xrandr --output eDP --set TearFree on &
 
 while true; do
 	
 	memory=$(free -h | awk '(NR==2){ print $3 }')
 
-	volume=$(amixer get Master | awk -F'[][]' 'END{print $2 }')
+	volume=$(amixer get -c 2 Master | awk -F'[][]' 'END{print $2 }')
 
 	micvolume=$(amixer get -c 2 Capture | awk -F'[][]' 'END{ print $6"::"$2 }')	
 	#micbvolume=$(amixer get -c 3 Mic | awk -F '[][]' 'END{ print $6":"$2 }')
