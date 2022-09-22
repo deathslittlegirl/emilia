@@ -55,7 +55,7 @@ static const char col_gray4[]       = "#ffffff";
 
 /* top bar second color and active window border color */
 
-static const char col_cyan[]        = "#ff81ff";
+static const char col_cyan[]        = "#aaaaff";
 
 static const char *colors[][3]      = {
 
@@ -88,7 +88,7 @@ static const float mfact     = 0.62; /* factor of master area size [0.05..0.95] 
 
 static const int nmaster     = 1;    /* number of clients in master area */
 
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 
 static const int lockfullscreen = 0; /* 1 will force focus on the fullscreen window */
 
@@ -110,7 +110,7 @@ static const Layout layouts[] = {
 
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-b", "-p", "Taya", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 
 /* system control */
 
@@ -189,11 +189,9 @@ static const char *mail[] = { "thunderbird", NULL };
 
 /* web */
 
-static const char *msg1[] = { "com.discordapp.Discord", NULL };
+static const char *msg1[] = { "com.discordapp.Discord", "--ignore-gpu-blocklist", "--disable-features=UseOzonePlatform", "--enable-features=VaapiVideoDecoder", "--use-gl=desktop", "--enable-gpu-rasterization", "--enable-zero-copy", NULL };
 
-static const char *brw1[] = { "icecat", NULL };
-static const char *prn1[] = { "icecat", "https://xvideos.com", NULL };
-static const char *prn2[] = { "icecat", "https://chan.sankakucomplex.com/", NULL };
+static const char *brw1[] = { "com.github.Eloston.UngoogledChromium", NULL };
 
 static const char *github[] = { "io.github.shiftey.Desktop", NULL };
 static const char *vpn[] = { "riseup-vpn.launcher", NULL }; 
@@ -369,9 +367,6 @@ static Key keys[] = {
 
 	{ MODKEY,		        XK_w,		spawn,		{ .v = brw1 } },
 	{ MODKEY|ShiftMask,	    XK_w,		spawn,		{ .v = msg1 } },
-
-	{ Mod1Mask,		        XK_x,		spawn,		{ .v = prn1 } },
-	{ Mod1Mask|ShiftMask,	XK_x,		spawn,		{ .v = prn2 } }, 
 
 	{ MODKEY|ControlMask,	XK_w,		spawn,		{ .v = github } },
 
