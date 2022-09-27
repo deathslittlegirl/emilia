@@ -1,0 +1,15 @@
+activation_key: A-M-d
+hint_activation_key: A-M-e
+left: a
+down: s
+up: w
+right: d
+scroll_up: A-w
+scroll_down: A-s
+cursor_color: #ffaaff
+cursor_size: 9
+hint_bgcolor: #000000
+hint_fgcolor: #55ff7f
+
+buttons: e 3 q
+acceleration: 850 

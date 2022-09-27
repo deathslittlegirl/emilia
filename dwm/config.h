@@ -34,8 +34,9 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 
-static const char *fonts[]          = { "terminus:size=10" };
-static const char dmenufont[]       = "terminus:size=10";
+static const char *fonts[]          = { "terminus:size=8" };
+static const char dmenufont[]       = "terminus:size=8";
+
 
 /* background color */
 
@@ -184,12 +185,11 @@ static const char *nicotine[] = { "org.nicotine_plus.Nicotine", NULL };
 
 static const char *e1[] = { "gnome-text-editor", NULL };
 static const char *e2[] =  { "emacs", NULL };
-static const char *e3[] = { "dev.lapce.lapce", NULL };
 static const char *mail[] = { "thunderbird", NULL }; 
 
 /* web */
 
-static const char *msg1[] = { "com.discordapp.Discord", "--ignore-gpu-blocklist", "--disable-features=UseOzonePlatform", "--enable-features=VaapiVideoDecoder", "--use-gl=desktop", "--enable-gpu-rasterization", "--enable-zero-copy", NULL };
+static const char *msg1[] = { "com.discordapp.Discord", "--ignore-gpu-blocklist", "--disable-features=UseOzonePlatform", "--enable-features=VaapiVideoDecoder", "--use-gl=desktop", "--enable-gpu-rasterization", "--enable-zero-copy", "--no-sandbox", NULL };
 
 static const char *brw1[] = { "com.github.Eloston.UngoogledChromium", NULL };
 
@@ -278,9 +278,9 @@ static Key keys[] = {
 	
 	{ MODKEY|ShiftMask,	XK_e,		spawn,		{ .v = e1 } },	
 	{ MODKEY|ControlMask, 	XK_e, 		spawn,    	{ .v = e2 } },
-	{ MODKEY|Mod1Mask,	XK_e,	spawn,		{ .v = e3 } },
 
 	{ Mod1Mask,		XK_period,	spawn,		{ .v = emoji } },
+	
 	
 	{ MODKEY|ControlMask, 	XK_v, 		spawn,		{ .v = visualizer } },
 	{ MODKEY|ControlMask,   XK_t,       spawn,      { .v = transset } },
