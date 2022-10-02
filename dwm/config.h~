@@ -56,7 +56,7 @@ static const char col_gray4[]       = "#ffe9f7"; /* previously #ffffff */
 
 /* top bar second color and active window border color */
 
-static const char col_cyan[]        = "#f68bd4"; /*#f68bd4 previously*/
+static const char col_cyan[]        = "#292928"; /*#f68bd4 previously*/
 
 static const char *colors[][3]      = {
 
