@@ -1,7 +1,6 @@
 # .bashrc
-neofetch
-PS1="[ \e[0;34m\w\e[0m ]\n:: "
 
+PS1="[ \e[0;34m\w\e[0m ]\n:: "
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
@@ -27,10 +26,11 @@ if [ -d ~/.bashrc.d ]; then
 fi
 
 unset rc
-
 # Pathing
 
 export PATH="$PATH:/var/lib/flatpak/exports/bin"
+export PATH=$PATH:$HOME/.spicetify
+export PATH=$PATH:$HOME/.cargo/bin 
 
 # CPU Governance
 
@@ -38,16 +38,28 @@ alias cpu-list="cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_gover
 
 alias cpu-current="cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"
 
-alias cpu-conservative="echo 'conservative' | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor"
+alias cpu-conservative="echo 'conservative' | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor && asusctl profile -P Quiet"
 
 alias cpu-ondemand="echo 'ondemand' | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor"
 
-alias cpu-userspace="echo 'userspace' | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor"
+alias cpu-userspace="echo 'userspace' | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor && asusctl profile -P Balanced"
 
 alias cpu-powersave="echo 'powersave' | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor"
 
-alias cpu-performance="echo 'performance' | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor"
+alias cpu-performance="echo 'performance' | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor && asusctl profile -P Performance"
 
 alias cpu-schedutil="echo 'schedutil' | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor"
 
+alias fd="pkill Discord && killall Discord"
 
+alias warpdr='pkill warpd && warpd'
+alias ssoff='xdg-screensaver suspend 0x868'
+alias sson='xdg-screensaver resume 0x868'
+alias liab="cd $HOME/.lia && sudo make clean install && cd $HOME"
+alias liae='vim ~/.lia/config.h && cd ~/.lia && sudo make clean install && vim ~/.lia/config.h'
+
+
+alias grungegirl='python ~/.grungegirl/main.py'
+
+alias com.discordapp.Discord="com.discordapp.Discord --ignore-gpu-blocklist --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy --use-angle=vulkan --no-sandbox"
+alias rps="vim $HOME/.ratpoisonrc"
