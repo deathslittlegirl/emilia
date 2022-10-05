@@ -13,4 +13,7 @@ hint_fgcolor: #55ff7f
 
 buttons: e 3 q
 acceleration: 777 
-speed: 250
+speed: 277
+hint_chars: asre
+hint_font: Liberation Mono
+grid_size: 4

@@ -1,0 +1,33 @@
+[
+  {
+    "protocol": {
+      "http,https": [
+        {
+          "contains": ["youtube.com/watch?", "youtu.be/watch?"],
+          "use": "com.github.Eloston.UngoogledChromium"
+        },
+	  "com.github.Eloston.UngoogledChromium"
+      ]
+    }
+  },
+
+  {
+    "mime": {
+	"video": "mpv",
+	"audio": "mpv --loop",
+	"image": "nomacs -p"
+	
+    }
+   
+  },
+
+  {
+    "extension": {
+	"pdf": "evince",
+	"ts": "alacritty -e ${EDITOR}",
+	"txt": "alacritty -e ${EDITOR}"
+    }
+  },
+
+  "/usr/bin/xdg-open"
+]
