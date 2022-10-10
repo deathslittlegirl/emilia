@@ -1,0 +1,84 @@
+M in this document represents the modifier key Alt; the Mod key.
+C in this document represents the modifier key Ctrl.
+Spc in this document represents the spacebar.
+DEL in this document represents the backspace key.
+RET in this document represents the enter key; the return key.
+
+The caret is the object that is before, over, and after the text while you're typing. The crosshair of text editing.
+
+Think of C-x as "Control the execution of ____ command."
+
+[Essentials]
+
+C-h t for interactive tutorials.
+C-h i for the entirety of Emacs' documentation. 
+
+C-g gimps the current macro in progress.
+ESC ESC ESC also gimps the current macro in progress.
+
+[Find and Replace]
+
+C-s finds text going forward.
+C-r finds text going backwards.
+
+After querying the text in the direction of choice, press the same hotkey to go over results in that order.
+
+M-x occur RET will open a buffer with all matching text based on what you search. Each result can be clicked to teleport the caret to that position.
+
+[Editing]
+
+C-Spc enters a Vim-esque modal selection mode.
+The arrow keys in selection mode will guide the caret.
+
+Spc in selection mode will disengage.
+
+M-w copies text.
+C-w cuts text.
+C-y pastes text.
+M-y pastes text from history.
+C-x u will undo a command.
+ESC-DEL will backspace entire words.
+
+C-d is forwards deletion.
+
+[Navigation]
+
+C-n for next line downwards. (next)
+C-p for next line upwards. (previous)
+C-v for page down.
+M-v for page up. 
+M-S-< will bring the caret to the start of the document.
+M-S-> lowers the caret to the bottom of the document.
+C-Up leaps the caret upwards a few lines.
+C-Down drops the caret downwards a few lines.
+
+C-e for end of line. (end)
+C-a for beginning of line. (alpha)
+M-g g to move to a specific line.
+C-x C-s to save a document.
+C-x d to open a directory.
+C-x i to insert a file.
+
+[Frame Navigation]
+
+Navigate through buffers with C-x o. 
+Open a buffer horizontally with C-x 2.
+Open a buffer vertically with C-x 3.
+
+Remove all but the active buffer with C-x 0.
+
+Find a specific buffer with C-x b.
+
+List all buffers with C-x C-b. The selected buffer will open in the same frame as the menu for selecting it..
+
+Kill a buffer with C-x k.
+
+M-x shell RET will bring up a shell.
+M-x tab-bar-mode RET will enable tabs in a bar above the frame. 
+M-x eww RET will bring up the browser. You can use it as a search engine without havinga specific link for it. 
+
+Avoid C-z in the browser.
+
+F10 to open drop-down menu.
+C-c will exit Emacs. You will be prompted to save whatever, in short.
+

@@ -1,5 +1,5 @@
 /* see LICENSE file for copyright and license details. */
-
+/*stable on linux kernel 6.1.1rc2-fedoralinux*/
 /* it compiles faster like this */
 
 #include "tatami.c"
@@ -40,23 +40,23 @@ static const char dmenufont[]       = "terminus:size=8";
 
 /* background color */
 
-static const char col_gray1[]       = "#292929";
+static const char col_gray1[]       = "#ffffff"; /* #292929 previously */
 
 /* inactive window border color */
 
-static const char col_gray2[]       = "#8d9bfc";
+static const char col_gray2[]       = "#8d9bfc"; /* #8d9bfc previously */
 
 /* font color */
 
-static const char col_gray3[]       = "#ffffff";
+static const char col_gray3[]       = "#fe2e7e";
 
 /* current tag and current window font color */
 
-static const char col_gray4[]       = "#ffe9f7"; /* previously #ffffff */
+static const char col_gray4[]       = "#eaeaea"; /* previously #ffffff */
 
 /* top bar second color and active window border color */
 
-static const char col_cyan[]        = "#f68bd4"; /*#f68bd4 previously*/
+static const char col_cyan[]        = "#fe2e7e"; /*#f68bd4 previously*/
 
 static const char *colors[][3]      = {
 
@@ -69,7 +69,7 @@ static const char *colors[][3]      = {
 
 /* tagging */
 
-static const char *tags[] = { "X", "XI", "XII", "XIII" };
+static const char *tags[] = { "♀", "XI", "XII", "XIV" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -84,7 +84,7 @@ static const Rule rules[] = {
 
 /* layout(s) */
 
-static const float mfact     = 0.62; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.61; /* factor of master area size [0.05..0.95] */
 
 static const int nmaster     = 1;    /* number of clients in master area */
 
@@ -153,23 +153,23 @@ static const char *screendown[] = { "light", "-U", "10", NULL };
 static const char *kbdup[] = { "light", "-s", "sysfs/leds/asus::kbd_backlight", "-A", "50",  NULL };
 static const char *kbddown[] = { "light", "-s", "sysfs/leds/asus::kbd_backlight", "-U", "50",  NULL };
 
-static const char *dwmcon1[] = { "alacritty", "-e", "emacs", "-nw", "~/.lia/config.h", NULL };
+static const char *dwmcon1[] = { "alacritty" "-e", "emacs", "-nw", "~/.lia/config.h", NULL };
 static const char *dwmcon2[] = { "alacritty", "-e", "emacs", "-nw", "~/.dwm/autostart.sh", NULL };
 
-static const char *sctrl1[] = { "pavucontrol", NULL };
-static const char *sctrl2[] = { "alacritty", "-e", "alsamixer", NULL };
+static const char *sctrl1[] = { "pavucontrol", "--tab=2", NULL };
+static const char *sctrl2[] = { "cool-retro-term", "-e", "alsamixer", NULL };
 static const char *sctrl3[] = { "org.rncbc.qpwgraph", NULL };
 
 /* utility */
 
 static const char *wp[] = { "nitrogen", NULL };
 
-static const char *ss[] = { "scrot", "-s", NULL };
-static const char *ssf[] = { "scrot", "-f", NULL };
+static const char *ss[] = { "scrot", "-s", "-q", "100", "-e", "'mv $f ~/Pictures/ss/'",  NULL };
+static const char *ssf[] = { "scrot", "-f", "-q", "100", "-e", "'mv $f ~/Pictures/ss/'", NULL };
 static const char *sr[] = { "simplescreenrecorder", NULL };
 
 static const char *fm1[] = { "pcmanfm-qt", NULL };
-static const char *fm2[] = { "alacritty", "-e", "mc", "-b", NULL };
+static const char *fm2[] = { "alacritty", "-e", "sudo", "mc", "-b", NULL };
 
 static const char *pwmgr[] = { "keepassxc", NULL };
 
@@ -182,9 +182,9 @@ static const char *nicotine[] = { "org.nicotine_plus.Nicotine", NULL };
 
 /* general applications */
 
-static const char *editor[] = { "alacritty", "-e", "emacs", "-nw", NULL };
+static const char *editor[] = { "alacritty" "-e", "emacs", "-nw", NULL };
 static const char *viewer[] =  { "evince", NULL };
-static const char *mail[] = { "thunderbird", NULL }; 
+static const char *mail[] = { "thunderbird", "-calendar", NULL }; 
 
 /* web */
 
@@ -211,11 +211,10 @@ static const char *vv[] = { "vlc", NULL };
 /* audio */
 
 static const char *daw1[] = { "bitwig-studio", NULL };
-static const char *daw2[] = { "renoise", NULL };
 
 static const char *m1[] = { "com.spotify.Client", NULL };
-static const char *m2[] = { "alacritty", "-e", "ncspot", NULL };
-static const char *m3[] = { "alacritty", "-e", "cmus", NULL };
+static const char *m2[] = { "cool-retro-term", "-e", "ncspot", NULL };
+static const char *m3[] = { "cool-retro-term", "-e", "cmus", NULL };
 
 static const char *radio1[] = { "goodvibes", NULL };
 static const char *radio2[] = { "de.haeckerfelix.Shortwave", NULL };
@@ -223,12 +222,13 @@ static const char *radio2[] = { "de.haeckerfelix.Shortwave", NULL };
 /* gaming */
 
 static const char *steam[] = { "steam", NULL };
-static const char *game1[] = { "alacritty", "-e", "cataclysm", NULL };
+static const char *game1[] = { "cool-retro-term", "-e", "cataclysm", NULL };
 static const char *game2[] = { "supertuxkart", NULL };
 
 /* cleaners */
 
-static const char *cleaner[] = { "bleachbit", NULL };
+static const char *cleaner[] = { "alacritty", "-e", "sudo", "bleachbit", NULL };
+static const char *cleaner2[] = { "alacritty", "-e" "sudo", "stacer", NULL };
 
 /* visualizer */
 
@@ -273,17 +273,17 @@ static Key keys[] = {
 	{ ControlMask,		XK_Escape,	spawn,		{ .v = pwmgr } },	
 	{ ShiftMask, 		XK_Escape,	spawn,		{ .v = sysmon } },
 
-	{ MODKEY|ControlMask,	XK_f,		spawn,		{ .v = fm1 } },	
-	{ MODKEY|ShiftMask, 	XK_f, 		spawn,  	{ .v = fm2 } },
+	{ MODKEY|ShiftMask,	XK_f,		spawn,		{ .v = fm1 } },	
+	{ MODKEY|ControlMask, 	XK_f, 		spawn,  	{ .v = fm2 } },
 	
 	{ MODKEY|ShiftMask,	XK_e,		spawn,		{ .v = editor } },	
 	{ MODKEY|ControlMask, 	XK_e, 		spawn,    	{ .v = viewer } },
 
-	{ Mod1Mask,		XK_period,	spawn,		{ .v = emoji } },
+	{ MODKEY|ControlMask,   XK_period,	spawn,		{ .v = emoji } },
 	
 	
 	{ MODKEY|ControlMask, 	XK_v, 		spawn,		{ .v = visualizer } },
-	{ MODKEY|ControlMask,   XK_t,       spawn,              { .v = transset } },
+	{ MODKEY|ControlMask,   XK_t,           spawn,          { .v = transset } },
 
 	/* system control */
 	
@@ -299,12 +299,13 @@ static Key keys[] = {
 	{ MODKEY,	XF86XK_AudioMute,	spawn,		{ .v = mutemic } },
 	{ MODKEY|ShiftMask,	XF86XK_AudioMute,	spawn,	{ .v = mutemicb } },
 	
-	{ MODKEY,	XK_Escape,		spawn,		{ .v = mutemic } },
+	{ MODKEY,	XK_Escape,		spawn,		{ .v = mutemic } },	
+	{ MODKEY,	XK_backslash,		spawn,		{ .v = mutemic } }, 
 	{ 0,	XK_F12,				spawn,		{ .v = mutemic } },
 	{ MODKEY|ShiftMask,	XK_Escape,		spawn,	{ .v = mutemicb } },
 	{ ControlMask|MODKEY, XK_Escape,    spawn,              { .v = killmicboost } },
 
-	{ MODKEY,	XF86XK_AudioRaiseVolume, spawn,		{ .v = upmica } },
+ 	{ MODKEY,	XF86XK_AudioRaiseVolume, spawn,		{ .v = upmica } },
 	{ MODKEY,	XF86XK_AudioLowerVolume, spawn,		{ .v = downmica } },
 
 	{ ControlMask,	XF86XK_AudioRaiseVolume, spawn,	        { .v = upmicb } },
@@ -352,39 +353,39 @@ static Key keys[] = {
 	
 	/* quit */
 
-	{ MODKEY,		          XK_End,	      quit,		      {0} },
-	{ Mod1Mask|ShiftMask,	  XK_Escape,      quit,	          {0} },
-	{ ControlMask|Mod1Mask,	  XK_Delete,      quit,	          {0} },
+	{ MODKEY,		  XK_End,	quit,		  {0} },
+	{ Mod1Mask|ShiftMask,	  XK_Escape,    quit,	          {0} },
+	{ ControlMask|Mod1Mask,	  XK_Delete,    quit,	          {0} },
 	
 	/* cleaners */	
 
 	{ MODKEY,		  XK_Delete,	spawn,		{ .v = cleaner } }, 
-	
+	{ MODKEY,                 XK_Delete,    spawn,          { .v = cleaner2 } },
 	/* web */
 
-	{ MODKEY|ShiftMask,	    XK_i,		spawn,		{ .v = msg1 } },
+	{ MODKEY|ShiftMask,     XK_i,	        spawn,		{ .v = msg1 } },
 	{ MODKEY|ControlMask,	XK_i,		spawn,		{ .v = vpn } },
 
-	{ MODKEY,		        XK_w,		spawn,		{ .v = brw1 } },
-	{ MODKEY|ShiftMask,	    XK_w,		spawn,		{ .v = msg1 } },
+	{ MODKEY,		XK_w,	        spawn,		{ .v = brw1 } },
+	{ MODKEY|ShiftMask,	XK_w,	        spawn,		{ .v = msg1 } },
 
 	{ MODKEY|ControlMask,	XK_w,		spawn,		{ .v = github } },
 
 	{ ControlMask|Mod1Mask,	XK_m,		spawn,		{ .v = mail } },	
-	{ MODKEY|ControlMask,   XK_n,       spawn,      { .v = nicotine } },
+	{ MODKEY|ControlMask,   XK_n,           spawn,          { .v = nicotine } },
 	
 	/* audio */
 
 	{ MODKEY|ShiftMask,	   XK_m,		spawn,		{ .v = m1 } },
-	{ MODKEY|ControlMask,  XK_m,		spawn,		{ .v = m2 } },
+	{ MODKEY|ControlMask,       XK_m,		spawn,		{ .v = m2 } },
 
-	{ MODKEY|Mod1Mask,     XK_m,        spawn,      { .v = m3 } },
+	{ MODKEY|Mod1Mask,         XK_m,        spawn,                  { .v = m3 } },
 	
-	{ MODKEY,		       XK_r,		spawn,		{ .v = radio1 } },
+	{ MODKEY,		   XK_r,		spawn,		{ .v = radio1 } },
 	{ MODKEY|ShiftMask,	   XK_r,		spawn,		{ .v = radio2 } },
 	
-	{ Mod1Mask,		       XK_d,		spawn,		{ .v = daw1 } },
-	{ ControlMask|Mod1Mask, XK_d,		spawn,		{ .v = daw2 } },
+	{ Mod1Mask,		   XK_d,		spawn,		{ .v = daw1 } },
+	
 
 	{ MODKEY,		XK_s,		spawn,		{ .v = sctrl1 } },
 	{ MODKEY|ShiftMask,	XK_s,		spawn,		{ .v = sctrl2 } },
