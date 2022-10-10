@@ -153,7 +153,7 @@ static const char *screendown[] = { "light", "-U", "10", NULL };
 static const char *kbdup[] = { "light", "-s", "sysfs/leds/asus::kbd_backlight", "-A", "50",  NULL };
 static const char *kbddown[] = { "light", "-s", "sysfs/leds/asus::kbd_backlight", "-U", "50",  NULL };
 
-static const char *dwmcon1[] = { "alacritty" "-e", "emacs", "-nw", "~/.lia/config.h", NULL };
+static const char *dwmcon1[] = { "alacritty", "-e", "emacs", "-nw", "~/.lia/config.h", NULL };
 static const char *dwmcon2[] = { "alacritty", "-e", "emacs", "-nw", "~/.dwm/autostart.sh", NULL };
 
 static const char *sctrl1[] = { "pavucontrol", "--tab=2", NULL };
@@ -169,7 +169,7 @@ static const char *ssf[] = { "scrot", "-f", "-q", "100", "-e", "'mv $f ~/Picture
 static const char *sr[] = { "simplescreenrecorder", NULL };
 
 static const char *fm1[] = { "pcmanfm-qt", NULL };
-static const char *fm2[] = { "alacritty", "-e", "sudo", "mc", "-b", NULL };
+static const char *fm2[] = { "alacritty", "-e", "mc", "-b", NULL };
 
 static const char *pwmgr[] = { "keepassxc", NULL };
 
@@ -360,7 +360,8 @@ static Key keys[] = {
 	/* cleaners */	
 
 	{ MODKEY,		  XK_Delete,	spawn,		{ .v = cleaner } }, 
-	{ MODKEY,                 XK_Delete,    spawn,          { .v = cleaner2 } },
+	{ MODKEY|Mod1Mask,                 XK_Delete,    spawn,          { .v = cleaner2 } },
+
 	/* web */
 
 	{ MODKEY|ShiftMask,     XK_i,	        spawn,		{ .v = msg1 } },

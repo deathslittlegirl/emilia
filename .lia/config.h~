@@ -169,7 +169,7 @@ static const char *ssf[] = { "scrot", "-f", "-q", "100", "-e", "'mv $f ~/Picture
 static const char *sr[] = { "simplescreenrecorder", NULL };
 
 static const char *fm1[] = { "pcmanfm-qt", NULL };
-static const char *fm2[] = { "alacritty", "-e", "sudo", "mc", "-b", NULL };
+static const char *fm2[] = { "alacritty", "-e", "mc", "-b", NULL };
 
 static const char *pwmgr[] = { "keepassxc", NULL };
 
@@ -360,7 +360,8 @@ static Key keys[] = {
 	/* cleaners */	
 
 	{ MODKEY,		  XK_Delete,	spawn,		{ .v = cleaner } }, 
-	
+	{ MODKEY|Mod1Mask,                 XK_Delete,    spawn,          { .v = cleaner2 } },
+
 	/* web */
 
 	{ MODKEY|ShiftMask,     XK_i,	        spawn,		{ .v = msg1 } },
