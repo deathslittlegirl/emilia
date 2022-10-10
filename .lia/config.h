@@ -164,8 +164,8 @@ static const char *sctrl3[] = { "org.rncbc.qpwgraph", NULL };
 
 static const char *wp[] = { "nitrogen", NULL };
 
-static const char *ss[] = { "scrot", "-s", "-q", "100", "-e", "'mv $f ~/Pictures/ss/'",  NULL };
-static const char *ssf[] = { "scrot", "-f", "-q", "100", "-e", "'mv $f ~/Pictures/ss/'", NULL };
+static const char *ss[] = { "scrot", "-s", "-q", "100",  NULL };
+static const char *ssf[] = { "scrot", "-f", "-q", "100", NULL };
 static const char *sr[] = { "simplescreenrecorder", NULL };
 
 static const char *fm1[] = { "pcmanfm-qt", NULL };
@@ -182,7 +182,7 @@ static const char *nicotine[] = { "org.nicotine_plus.Nicotine", NULL };
 
 /* general applications */
 
-static const char *editor[] = { "alacritty" "-e", "emacs", "-nw", NULL };
+static const char *editor[] = { "alacritty", "-e", "emacs", "-nw", NULL };
 static const char *viewer[] =  { "evince", NULL };
 static const char *mail[] = { "thunderbird", "-calendar", NULL }; 
 
