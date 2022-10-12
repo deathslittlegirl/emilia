@@ -1,4 +1,4 @@
- /* see LICENSE file for copyright and license details. */
+/* see LICENSE file for copyright and license details. */
 /*stable on linux kernel 6.1.1rc2-fedoralinux*/
 /* it compiles faster like this */
 
@@ -115,6 +115,8 @@ static const char *dmenucmd[] = { "dmenu_run", "-b", "-p", "lia", "-m", dmenumon
 /* system control */
 
 static const char *termcmd[]  = { "alacritty", NULL};
+static const char *termcmd2[]  = { "cool-retro-term", NULL};
+
 static const char *rofi[] = { "rofi", "-show", "drun", NULL };
 
 static const char *upmica[] = { "amixer", "set", "-c", "2", "Capture", "1+", NULL };
@@ -174,7 +176,7 @@ static const char *fm2[] = { "alacritty", "-e", "mc", "-b", NULL };
 static const char *pwmgr[] = { "keepassxc", NULL };
 
 static const char *emoji[] = { "gnome-characters", NULL };
-static const char *sysmon[] = { "alacritty", "-e", "bpytop", NULL };
+static const char *sysmon[] = { "alacritty", "-e", "sudo", "htop", NULL };
 
 static const char *transset[] = { "transset-df", NULL };
 
@@ -258,7 +260,7 @@ static Key keys[] = {
 	{ Mod1Mask,		XK_F2,		spawn,		{ .v = rofi } },
 
 	{ MODKEY|ShiftMask,	XK_Return, 	    spawn,      { .v = termcmd } },
-	{ Mod1Mask|ShiftMask,	XK_Return, 	spawn, 	        { .v = termcmd } },
+	{ Mod1Mask|ShiftMask,	XK_Return, 	spawn, 	        { .v = termcmd2 } },
 	{ ControlMask|Mod1Mask, XK_t,		spawn,	        { .v = termcmd } },
 	{ Mod1Mask,		XK_Escape,	        spawn,  { .v = termcmd } },	
 	
