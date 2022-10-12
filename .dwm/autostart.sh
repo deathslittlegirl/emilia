@@ -2,6 +2,7 @@
 
 killall python & 
 killall warpd & 
+exec alsactl daemon &
 exec pkill warpd &
 exec dunst &
 exec /usr/libexec/kdeconnectd & 
@@ -11,12 +12,6 @@ exec warpd &
 exec picom -f --backend glx --vsync --paint-on-overlay --experimental-backends --glx-no-stencil --xrender-sync-fence -b -i 0.5 &
 exec xrandr --output HDMI-A-0 --set TearFree on &
 exec xrandr --output eDP --set TearFree on &
-
-exec amixer cset -c 2 numid=10,iface=MIXER,name='Internal Mic Boost Volume' 0 &
-
-exec amixer cset -c 2 numid=7,iface=MIXER,name='Capture Volume' 53 & 
-
-exec amixer cset -c 2 numid=8,iface=MIXER,name='Capture Switch' off &
 
 while true; do
 	
@@ -40,12 +35,20 @@ done &
 
 while true; do
 
+    exec warpd -c $HOME/.config/warpd/config &
+    wait
+
+done &
+
+while true; do
+
     cd $HOME/.var/app/com.discordapp.Discord
         rm -rf cache/
         cd $HOME
 	sleep 120 &
 	wait
 done &	
+
 
 while true; do
 
