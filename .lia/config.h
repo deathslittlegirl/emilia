@@ -1,4 +1,4 @@
-/* see LICENSE file for copyright and license details. */
+ /* see LICENSE file for copyright and license details. */
 /*stable on linux kernel 6.1.1rc2-fedoralinux*/
 /* it compiles faster like this */
 
@@ -223,7 +223,7 @@ static const char *radio2[] = { "de.haeckerfelix.Shortwave", NULL };
 
 static const char *steam[] = { "steam", NULL };
 static const char *game1[] = { "cool-retro-term", "-e", "cataclysm", NULL };
-static const char *game2[] = { "supertuxkart", NULL };
+static const char *game2[] = { "openttd", NULL };
 
 /* cleaners */
 
