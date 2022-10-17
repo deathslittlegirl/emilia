@@ -40,23 +40,23 @@ static const char dmenufont[]       = "terminus:size=8";
 
 /* background color */
 
-static const char col_gray1[]       = "#010101"; /* #292929 previously */
+static const char col_gray1[]       = "#ffffff"; /* #292929 previously */
 
 /* inactive window border color */
 
-static const char col_gray2[]       = "#ffffff"; /* #8d9bfc previously */
+static const char col_gray2[]       = "#8d9bfc"; /* #8d9bfc previously */
 
 /* font color */
 
-static const char col_gray3[]       = "#01d181"; /* previously #01d181 */
+static const char col_gray3[]       = "#fe2e7e";
 
 /* current tag and current window font color */
 
-static const char col_gray4[]       = "#a11113"; /* previously #ffffff */
+static const char col_gray4[]       = "#eaeaea"; /* previously #ffffff */
 
 /* top bar second color and active window border color */
 
-static const char col_cyan[]        = "#01d181"; /*#f68bd4 previously*/
+static const char col_cyan[]        = "#fe2e7e"; /*#f68bd4 previously*/
 
 static const char *colors[][3]      = {
 
@@ -69,7 +69,7 @@ static const char *colors[][3]      = {
 
 /* tagging */
 
-static const char *tags[] = { "ª♀", "XI", "XII", "XIV" };
+static const char *tags[] = { "♀", "XI", "XII", "XIV" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -98,12 +98,12 @@ static const Layout layouts[] = {
  	symbol     	arrangement 				
 
 								*/	
-	{ "ia",      	tatami },    /* first entry is default */
-	{ "f",      	NULL },    /* no layout function means floating behavior */
-	{ "m",      	monocle },
-	{ "t",	        tile },
-	{ "cm",         centeredmaster },
-	{ "cm:f",       centeredfloatingmaster },
+	{ "|+|",      	tatami },    /* first entry is default */
+	{ "><>",      	NULL },    /* no layout function means floating behavior */
+	{ "[M]",      	monocle },
+	{ "[]=",	tile },
+	{ "|M|",      centeredmaster },
+	{ ">M>",      centeredfloatingmaster },
 	};
 
 /* dmenu */
@@ -166,7 +166,7 @@ static const char *sctrl3[] = { "org.rncbc.qpwgraph", NULL };
 
 static const char *wp[] = { "nitrogen", NULL };
 
-static const char *ss[] = { "scrot", "-s", "-q", "100", NULL };
+static const char *ss[] = { "scrot", "-s", "-q", "100",  NULL };
 static const char *ssf[] = { "scrot", "-f", "-q", "100", NULL };
 static const char *sr[] = { "simplescreenrecorder", NULL };
 
@@ -192,10 +192,7 @@ static const char *mail[] = { "thunderbird", "-calendar", NULL };
 
 static const char *msg1[] = { "com.discordapp.Discord", "--ignore-gpu-blocklist", "--disable-features=UseOzonePlatform", "--enable-features=VaapiVideoDecoder", "--use-gl=desktop", "--enable-gpu-rasterization", "--enable-zero-copy", "--no-sandbox", "use-angle=vulkan", NULL };
 
-
-static const char *brw1[] = { "librewolf", NULL };
-
-/* static const char *brw1[] = { "com.github.Eloston.UngoogledChromium", "--password-store='gnome'", "--ignore-gpu-blocklist", "--enable-gpu-rasterization", "--enable-zero-copy", "--disable-features=UseChromeOSDirectVideoDecoder", "--disk-cache-dir=/dev/null", "--use-angle=vulkan", "--max_old_space_size=8126", NULL }; */
+static const char *brw1[] = { "com.github.Eloston.UngoogledChromium", "--password-store='gnome'", "--ignore-gpu-blocklist", "--enable-gpu-rasterization", "--enable-zero-copy", "--disable-features=UseChromeOSDirectVideoDecoder", "--disk-cache-dir=/dev/null", "--use-angle=vulkan", "--max_old_space_size=8126", NULL };
 
 /* static const char *incognito = { "com.github.Eloston.UngoogledChromium", "--incognito", "--password-store='gnome'", NULL }; */
 
@@ -219,7 +216,7 @@ static const char *daw1[] = { "bitwig-studio", NULL };
 
 static const char *m1[] = { "com.spotify.Client", NULL };
 static const char *m2[] = { "deadbeef", NULL };
-static const char *m3[] = { "alacritty", "-e", "cmus", NULL };
+static const char *m3[] = { "cool-retro-term", "-e", "cmus", NULL };
 
 static const char *radio1[] = { "goodvibes", NULL };
 static const char *radio2[] = { "de.haeckerfelix.Shortwave", NULL };
@@ -361,7 +358,7 @@ static Key keys[] = {
 	{ MODKEY,		  XK_End,	quit,		  {0} },
 	{ Mod1Mask|ShiftMask,	  XK_Escape,    quit,	          {0} },
 	{ ControlMask|Mod1Mask,	  XK_Delete,    quit,	          {0} },
-
+	
 	/* cleaners */	
 
 	{ MODKEY,		  XK_Delete,	spawn,		{ .v = cleaner } }, 
@@ -441,7 +438,6 @@ static Key keys[] = {
 	{ MODKEY,               XK_Tab, 	zoom,           { 0 } },
 	{ Mod1Mask,             XK_Tab,    	view,           { 0 } },	
 	{ MODKEY|ShiftMask,     XK_q,      	killclient,     { 0 } },
-	{ Mod1Mask,             XK_q,           killclient,     { 0 } },
 	{ Mod1Mask,     	XK_F4,      	killclient,     { 0 } },
 	
 	{ MODKEY,               XK_t,      	setlayout,      { .v = &layouts[0] } },
