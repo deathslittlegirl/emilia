@@ -1,17 +1,29 @@
 #!/bin/sh
 
-killall python & 
 killall warpd & 
-exec alsactl daemon &
 exec pkill warpd &
 exec dunst &
-exec /usr/libexec/kdeconnectd & 
+exec /usr/lib/kdeconnectd & 
 exec nitrogen --restore &
 exec goodvibes --without-ui &
 exec warpd &
-exec picom -f --backend glx --vsync --paint-on-overlay --experimental-backends --glx-no-stencil --xrender-sync-fence -b -i 0.5 &
+exec picom --backend glx --vsync --experimental-backends --glx-no-stencil --xrender-sync-fence -b -i 0.5 &
 exec xrandr --output HDMI-A-0 --set TearFree on &
 exec xrandr --output eDP --set TearFree on &
+exec /usr/lib/lxpolkit &
+
+
+# exec ckb-next -b &
+
+exec amixer cset -c 2 numid=10,iface=MIXER,name='Internal Mic Boost Volume' 0 &
+
+exec amixer cset -c 2 numid=7,iface=MIXER,name='Capture Volume' 53 & 
+
+# exec amixer set -c 3 'Mic' 77 & 
+
+exec amixer cset -c 2 numid=8,iface=MIXER,name='Capture Switch' off &
+
+# exec amixer cset -c 3 numid=7,iface=MIXER,name='Mic Capture Switch' off &
 
 while true; do
 	
@@ -48,7 +60,6 @@ while true; do
 	sleep 120 &
 	wait
 done &	
-
 
 while true; do
 

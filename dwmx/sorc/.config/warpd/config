@@ -6,14 +6,14 @@ up: w
 right: d
 scroll_up: A-w
 scroll_down: A-s
-cursor_color: #ffaaff
+cursor_color: #8effa8
 cursor_size: 9
 hint_bgcolor: #000000
-hint_fgcolor: #55ff7f
+hint_fgcolor: #01d181
 
 buttons: e 3 q
-acceleration: 777 
-speed: 277
-hint_chars: asre
+acceleration: 720
+speed: 300
+hint_chars: wfqec
 hint_font: Liberation Mono
-grid_size: 4
+grid_size: 7

@@ -1,5 +1,5 @@
 /* see LICENSE file for copyright and license details. */
-/*stable on linux kernel 6.1.1rc2-fedoralinux*/
+/*stable on linux kernel 6.0.2-archlinux*/
 /* it compiles faster like this */
 
 #include "tatami.c"
@@ -190,14 +190,15 @@ static const char *mail[] = { "thunderbird", "-calendar", NULL };
 
 /* web */
 
-static const char *msg1[] = { "com.discordapp.Discord", "--ignore-gpu-blocklist", "--disable-features=UseOzonePlatform", "--enable-features=VaapiVideoDecoder", "--use-gl=desktop", "--enable-gpu-rasterization", "--enable-zero-copy", "--no-sandbox", "use-angle=vulkan", NULL };
+/* static const char *msg1[] = { "com.discordapp.Discord", "--ignore-gpu-blocklist", "--disable-features=UseOzonePlatform", "--enable-features=VaapiVideoDecoder", "--use-gl=desktop", "--enable-gpu-rasterization", "--enable-zero-copy", "--no-sandbox", "use-angle=vulkan", NULL }; */
 
-
+static const char *msg1[] = { "com.discordapp.Discord", NULL } ;
+ 
 static const char *brw1[] = { "librewolf", NULL };
 
-/* static const char *brw1[] = { "com.github.Eloston.UngoogledChromium", "--password-store='gnome'", "--ignore-gpu-blocklist", "--enable-gpu-rasterization", "--enable-zero-copy", "--disable-features=UseChromeOSDirectVideoDecoder", "--disk-cache-dir=/dev/null", "--use-angle=vulkan", "--max_old_space_size=8126", NULL }; */
+/* static const char *brw1[] = { "com.github.Eloston.UngoogledChromium", "--password-store='lxpolkit'", "--ignore-gpu-blocklist", "--enable-gpu-rasterization", "--enable-zero-copy", "--disable-features=UseChromeOSDirectVideoDecoder", "--disk-cache-dir=/dev/null", "--use-angle=vulkan", "--max_old_space_size=8126", NULL }; */
 
-/* static const char *incognito = { "com.github.Eloston.UngoogledChromium", "--incognito", "--password-store='gnome'", NULL }; */
+/* static const char *incognito = { "com.github.Eloston.UngoogledChromium", "--incognito", "--password-store='lxpolkit'", NULL }; */
 
 static const char *github[] = { "io.github.shiftey.Desktop", NULL };
 static const char *vpn[] = { "riseup-vpn.launcher", NULL }; 
@@ -211,7 +212,7 @@ static const char *c[] = { "org.kde.kcolorchooser", NULL };
 /* video */
 
 static const char *ve[] = { "kdenlive", NULL };
-static const char *vv[] = { "vlc", NULL };
+/* static const char *vv[] = { "vlc", NULL }; */
 
 /* audio */
 
