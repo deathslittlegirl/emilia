@@ -166,8 +166,8 @@ static const char *sctrl3[] = { "org.rncbc.qpwgraph", NULL };
 
 static const char *wp[] = { "nitrogen", NULL };
 
-static const char *ss[] = { "scrot", "-s", "-q", "100", NULL };
-static const char *ssf[] = { "scrot", "-f", "-q", "100", NULL };
+static const char *ss[] = { "spectacle", "-r", NULL };
+static const char *ssf[] = { "spectacle", "-f", NULL };
 static const char *sr[] = { "simplescreenrecorder", NULL };
 
 static const char *fm1[] = { "pcmanfm-qt", NULL };
@@ -209,7 +209,7 @@ static const char *pe[] = { "gimp", "-n", "-a",  NULL };
 static const char *pv[] = { "nomacs", "-p", "-d" "$HOME/Pictures", NULL }; 
 static const char *c[] = { "org.kde.kcolorchooser", NULL };
 
-/* video */
+/* video  */
 
 static const char *ve[] = { "kdenlive", NULL };
 /* static const char *vv[] = { "vlc", NULL }; */
@@ -408,7 +408,8 @@ static Key keys[] = {
 	
 	/* video */
 
-	{ MODKEY,		    XK_v,		spawn,		{ .v = vv } },	
+	/* { MODKEY,		    XK_v,		spawn,		{ .v = vv } },	*/
+	
 	{ MODKEY|ShiftMask,	XK_v,		spawn,		{ .v = ve } },
 
 	/* gaming */
